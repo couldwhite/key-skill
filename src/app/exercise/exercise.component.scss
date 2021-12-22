@@ -1,0 +1,53 @@
+.area_work {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  margin-right: 10%;
+}
+
+button {
+  background-color: #c5eec4;
+  border: 0;
+  border-radius: 4px 4px 4px 4px;
+  margin: 20px 30px 15px 30px;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  text-align: left;
+  padding: 0 0 0 5%;
+}
+
+a {
+  font-family: "Roboto";
+  font-size: 16px;
+  color: #56674c;
+}
+
+.settings {
+  display: flex;
+  margin-left: 5%;
+}
+
+.horizontal_hr {
+  margin-top: 20px;
+}
+
+.vert_hr {
+  margin: -7px 5px 5px 25px;
+}
+
+.exercises{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.btn_add{
+  padding: 1px 15px 1px 15px ;
+  border-radius: 50% 50% 50% 50%;
+  background-color: #45b05d;
+  color: white;
+  font-size: 60px;
+}
+
+.all_items{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

@@ -1,0 +1,14 @@
+<div class="top_panel">
+  <p mat-dialog-title>Добавить пользователя</p>
+  <input type="image" src="../../assets/close.png" width="7%" height="7%" (click)="onClose()">
+</div>
+<hr>
+<div mat-dialog-content>
+  <p>Введите логин:</p>
+  <input [(ngModel)]="data.username" class="input_field" type="text">
+  <p>Введите пароль:</p>
+  <input [(ngModel)]="data.password" class="input_field" type="text">
+  <div class="btn_add">
+    <input  class="but" type="image" src="../../assets/plus.png" width="15%" height="15%" (click)="onSave()" >
+  </div>
+</div>
