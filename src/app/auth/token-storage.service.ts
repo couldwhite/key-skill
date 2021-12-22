@@ -34,8 +34,6 @@ export class TokenStorageService {
   }
 
   public saveAuthorities(authorities: string[]) {
-    console.log('saveAuthorities');
-    console.log(authorities);
     window.sessionStorage.removeItem(AUTHORITIES_KEY);
     window.sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
   }
@@ -44,8 +42,6 @@ export class TokenStorageService {
     this.roles = [];
 
     if (sessionStorage.getItem(TOKEN_KEY)) {
-      console.log('test');
-      console.log(sessionStorage.getItem(AUTHORITIES_KEY));
       JSON.parse(<string>sessionStorage.getItem(AUTHORITIES_KEY)).forEach((authority: string) => {
         this.roles.push(authority);
       });

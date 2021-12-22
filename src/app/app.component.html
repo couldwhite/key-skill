@@ -1,21 +1,28 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <ul class="nav navbar-nav" routerLinkActive="active">
-      <li *ngIf="authority === 'user'" class="nav-item">
-        <a class="nav-link" routerLink="user">User Board</a>
-      </li>
-      <li *ngIf="authority === 'admin'" class="nav-item">
-        <a class="nav-link" routerLink="admin">Admin Board</a>
-      </li>
-      <li *ngIf="authority === 'pm'" class="nav-item">
-        <a class="nav-link" routerLink="pm">PM Board</a>
-      </li>
-      <li *ngIf="!authority" class="nav-item">
-        <a class="nav-link" routerLink="auth/login">КЕЙСКИЛЛ</a>
-      </li>
-    </ul>
-  </div>
+<nav class="main" *ngIf="!authority; else loggedIn">
+  Кейскилл
 </nav>
+<ng-template #loggedIn>
+  <nav class="log_in">
+    <button>
+      <a href="/">Пользователи</a>
+    </button>
+    <button>
+      <a href="/exercises">Упражнения</a>
+    </button>
+    <button>
+      <a href="/">Статистика</a>
+    </button>
+    <button>
+      <a href="/">Справка</a>
+    </button>
+    <button class="user_button" (click)="logout()">
+      <p>{{username}}<br>{{authority==="admin"?"админ":"ученик"}}<br>Выйти</p>
+    </button>
+  </nav>
+</ng-template>
 <div class="container">
-  <router-outlet></router-outlet>
+  <router-outlet *ngIf="authority; else needLogIn"></router-outlet>
+  <ng-template #needLogIn>
+    <app-login></app-login>
+  </ng-template>
 </div>

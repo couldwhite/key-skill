@@ -1,32 +1,37 @@
 <div *ngIf="isLoggedIn; else loggedOut">
-  Logged in as {{roles}}.
+  <app-admin></app-admin>
 </div>
 
 <ng-template #loggedOut>
-  <div class="row col-sm-6" style="max-width:350px;">
+  <div *ngIf="!isLoggedIn" class="row" >
     <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-      <p>Для начала работы в клавиатурном тренажере вам необходимо войти</p>
+      <p>Для начала работы в клавиатурном тренажере вам<br> необходимо войти</p>
       <div class="form-group">
         <label for="username">Введите логин:</label>
-        <input type="text" class="form-control" name="username" [(ngModel)]="form.username" #username="ngModel"
-               required />
+
+        <mat-form-field appearance="fill" >
+          <input matInput name="username" [(ngModel)]="form.username" #username="ngModel"
+                 required />
+        </mat-form-field>
         <div *ngIf="f.submitted && username.invalid">
-          <div *ngIf="username.errors!.required">Username is required</div>
+          <div *ngIf="username.errors!.required">Логин обязателен</div>
         </div>
       </div>
       <div class="form-group">
         <label for="password">Введите пароль:</label>
-        <input type="password" class="form-control" name="password" [(ngModel)]="form.password" #password="ngModel"
-               required minlength="6" />
+        <mat-form-field appearance="fill">
+          <input matInput name="password" [(ngModel)]="form.password" #password="ngModel"
+                 required minlength="3" />
+        </mat-form-field>
         <div *ngIf="f.submitted && password.invalid">
-          <div *ngIf="password.errors!.required">Password is required</div>
-          <div *ngIf="password.errors!.minlength">Password must be at least 6 characters</div>
+          <div *ngIf="password.errors!.required">Пароль обязателен</div>
+          <div *ngIf="password.errors!.minlength">Пароль должен содержать минимум 3 символа</div>
         </div>
       </div>
       <div class="form-group">
-        <button class="btn btn-success">Войти</button>
+        <button class="btn">Войти</button>
         <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger">
-          Login failed: {{errorMessage}}
+          Введен неправильный логин<br>или пароль
         </div>
       </div>
     </form>
