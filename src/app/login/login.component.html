@@ -14,7 +14,7 @@
                  required />
         </mat-form-field>
         <div *ngIf="f.submitted && username.invalid">
-          <div *ngIf="username.errors!.required">Логин обязателен</div>
+          <div class="error-message" *ngIf="username.errors!.required">Логин обязателен</div>
         </div>
       </div>
       <div class="form-group">
@@ -24,8 +24,8 @@
                  required minlength="3" />
         </mat-form-field>
         <div *ngIf="f.submitted && password.invalid">
-          <div *ngIf="password.errors!.required">Пароль обязателен</div>
-          <div *ngIf="password.errors!.minlength">Пароль должен содержать минимум 3 символа</div>
+          <div class="error-message" *ngIf="password.errors!.required">Пароль обязателен</div>
+          <div class="error-message" *ngIf="password.errors!.minlength">Пароль должен содержать минимум 3 символа</div>
         </div>
       </div>
       <div class="form-group">

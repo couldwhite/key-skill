@@ -14,6 +14,19 @@
   margin-bottom: 100px;
 }
 
+.main-img {
+  display: grid;
+  justify-content: space-between;
+}
+
+.main-img__keyboard {
+  grid-column: 10;
+}
+
+.main-img__logo {
+  grid-column: 6;
+}
+
 .log_in{
   display: flex;
   height: 80px;
@@ -41,7 +54,11 @@ a{
 
 .user_button{
   background-color: #bf4547;
-  width: 100px;
+  width: 135px;
+  color: white;
+  font-size: 14px;
+  font-family: Roboto;
+  cursor: pointer;
 }
 
 .user_btn_text{

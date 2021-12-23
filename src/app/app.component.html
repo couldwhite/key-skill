@@ -1,5 +1,12 @@
 <nav class="main" *ngIf="!authority; else loggedIn">
-  Кейскилл
+  <div class="main-img">
+    <div class="main-img__logo">
+      <img src="./assets/logo.png" alt="Логотип" height="80">
+    </div>
+    <div class="main-img__keyboard">
+      <img src="./assets/keyboard.png" alt="Клавиатура" height="50">
+    </div>
+  </div>
 </nav>
 <ng-template #loggedIn>
   <nav class="log_in">
