@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
 
 
   logout(): void{
-    const dialogRef = this.dialog.open(LogoutComponent, {
+    this.dialog.open(LogoutComponent, {
       width: '375px'
     })
   }

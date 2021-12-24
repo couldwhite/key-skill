@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {NewUserModalComponent} from "../new-user-modal/new-user-modal.component";
+import {Exercise} from "../domain/exercise";
+import {UserService} from "../services/user.service";
+import {User} from "../domain/user";
 
 @Component({
   selector: 'app-admin',
@@ -9,11 +12,15 @@ import {NewUserModalComponent} from "../new-user-modal/new-user-modal.component"
 })
 export class AdminComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, public userService: UserService) { }
 
+  allUsers: User[] = [];
   ngOnInit(): void {
+    this.userService.getAllUsers().subscribe(response=> {
+      this.allUsers = response;
+      console.log(response)
+    });
   }
-
   username: string;
   password: string;
 

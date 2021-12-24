@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { UserComponent } from './user/user.component';
 import { AdminComponent } from './admin/admin.component';
 import {ExerciseComponent} from "./exercise/exercise.component";
+import {ExerciseProcessComponent} from "./exercise-process/exercise-process.component";
 
 const routes: Routes = [
   {
@@ -38,6 +39,10 @@ const routes: Routes = [
     path: 'logout',
     redirectTo: 'home',
     pathMatch: 'full'
+  },
+  {
+    path: 'exercise-process',
+    component: ExerciseProcessComponent
   },
 ];
 

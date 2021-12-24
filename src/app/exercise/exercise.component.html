@@ -17,14 +17,14 @@
       </div>
     </div>
     <div class="exercises">
-      <button *ngFor="let exercise of allExercises">
+      <a  class="button_exercise" *ngFor="let exercise of allExercises" href="/exercise-process">
         <a><b>{{exercise.name}}</b><br>
           Уровень: {{getNameOfLevel(exercise.levelNumber)}}<br>
           Длина (в символах): {{exercise.length}}<br>
           Максимальное количество ошибок: {{exercise.maxErrors}}<br>
           Задействованные пальцы: {{getFingers(exercise.keyZone)}}
         </a>
-      </button>
+      </a>
     </div>
   </div>
   <div>

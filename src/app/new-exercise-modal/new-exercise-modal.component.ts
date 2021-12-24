@@ -2,7 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {SignUpInfo} from "../auth/signup-info";
 import {AddUserService} from "../services/add_user.service";
-import {Exercise} from "../../domain/exercise";
+import {Exercise} from "../domain/exercise";
 import {ExerciseService} from "../services/exercise.service";
 
 interface Level{

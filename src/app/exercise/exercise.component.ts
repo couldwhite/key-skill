@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ExerciseService} from "../services/exercise.service";
-import {Exercise} from "../../domain/exercise";
+import {Exercise} from "../domain/exercise";
 import {NewUserModalComponent} from "../new-user-modal/new-user-modal.component";
 import {MatDialog} from "@angular/material/dialog";
 import {NewExerciseModalComponent} from "../new-exercise-modal/new-exercise-modal.component";
@@ -65,6 +65,10 @@ export class ExerciseComponent implements OnInit {
     }
     nameFingers+=" большой";
     return nameFingers;
+  }
+
+  openExercise(): void{
+
   }
 
 }

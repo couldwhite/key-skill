@@ -18,10 +18,11 @@ import {MatInputModule} from "@angular/material/input";
 import {ExerciseComponent} from './exercise/exercise.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import { NewUserModalComponent } from './new-user-modal/new-user-modal.component';
-import {SignUpInfo} from "./auth/signup-info";
 import { LogoutComponent } from './logout/logout.component';
 import { NewExerciseModalComponent } from './new-exercise-modal/new-exercise-modal.component';
 import {MatSelectModule} from "@angular/material/select";
+import { ExerciseProcessComponent } from './exercise-process/exercise-process.component';
+import {MatKeyboardConfig, MatKeyboardModule} from "angular-onscreen-material-keyboard";
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import {MatSelectModule} from "@angular/material/select";
     ExerciseComponent,
     NewUserModalComponent,
     LogoutComponent,
-    NewExerciseModalComponent
+    NewExerciseModalComponent,
+    ExerciseProcessComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +48,9 @@ import {MatSelectModule} from "@angular/material/select";
     MatInputModule,
     MatFormFieldModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
+    MatKeyboardModule,
+
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
