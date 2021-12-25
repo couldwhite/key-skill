@@ -1,41 +1,49 @@
 <div class="top_panel">
   <p mat-dialog-title>Создание упражнения</p>
-  <input type="image" src="../../assets/close.png" width="5%" height="5%" (click)="onClose()">
+  <input type="image" src="../../assets/close.png" width="5%" height="5%" (click)="onClose()" >
 </div>
 <hr>
-<div mat-dialog-content>
+<form [formGroup]="myForm" mat-dialog-content>
   <p>Введите название:</p>
-  <input [(ngModel)]="data.name" class="input_field" type="text">
+  <input [(ngModel)]="data.name" name="name" formControlName="name" class="input_field" type="text">
   <p>Введите уровень сложности:</p>
   <mat-form-field appearance="fill">
     <mat-label>Уровень сложности</mat-label>
-    <mat-select [(ngModel)]="data.levelNumber">
+    <mat-select [(ngModel)]="data.levelNumber" (valueChange)="displayAll()">
       <mat-option *ngFor="let level of this.levels" [value]="level.key">
         {{level.value}}
       </mat-option>
     </mat-select>
   </mat-form-field>
   <p>Введите длину упражнения:</p>
-  <input [(ngModel)]="data.length"  class="input_field" type="text">
+  <input [disabled]="!display_all"
+         [ngStyle]="display_all?{'background-color':'#c5eec4'}:{'background-color': 'grey' }"
+         [(ngModel)]="data.length" class="input_field" type="text">
   <p>Выберите зоны клавиатуры:</p>
-  <mat-form-field appearance="fill">
+  <mat-form-field *ngIf="display_all; else display_none" appearance="fill">
     <mat-label>Зоны клавиатуры</mat-label>
-    <mat-select [(ngModel)]="data.keyZone"multiple>
+    <mat-select [(ngModel)]="data.keyZone" multiple>
       <mat-option *ngFor="let zone of zoneList" [value]="zone.key">{{zone.value}}</mat-option>
     </mat-select>
   </mat-form-field>
+  <ng-template #display_none>
+    <input class="not_input_field" type="text" disabled>
+  </ng-template>
   <p>Введите максимальное время нажатия клавиши:</p>
-  <input [(ngModel)]="data.maxTimeKick" class="input_field"  type="number" max="4" min="0">
+  <input [ngStyle]="display_all?{'background-color':'#c5eec4'}:{'background-color': 'grey' }"
+         [(ngModel)]="data.maxTimeKick" class="input_field" type="number" max="4" min="0">
   <p>Выберите тип создания упражнения:</p>
-  <mat-form-field appearance="fill">
+  <mat-form-field *ngIf="display_all; else display_none" appearance="fill">
     <mat-label>Тип создания</mat-label>
-    <mat-select [(ngModel)]="data.creatingWay">
+    <mat-select [disabled]="!display_all"
+      [ngStyle]="display_all?{'background-color':'#c5eec4'}:{'background-color': 'grey'}"
+      [(ngModel)]="data.creatingWay">
       <mat-option *ngFor="let type of types" [value]="type">
         {{type}}
       </mat-option>
     </mat-select>
   </mat-form-field>
   <div class="btn_add">
-    <input  class="but" type="image" src="../../assets/plus.png" width="15%" height="15%" (click)="onSave()" >
+    <input class="but" type="submit" src="../../assets/plus.png" width="15%" height="15%" (click)="onSave()">
   </div>
-</div>
+</form>

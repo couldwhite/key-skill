@@ -1,4 +1,4 @@
-<div [@moving_letters]="'end'"></div>
+<div ></div>
 <div class="info">
   <div>
     <p>Осталось до конца упражнения: </p>
@@ -6,13 +6,17 @@
     <p>Осталось символов: </p>
   </div>
   <div class="virtual">
-    <input type="checkbox">
+    <input type="checkbox" (click)="openKeyboard()">
     <p>Виртуальная клавиатура</p>
   </div>
 </div>
-<div class="work">
-  <p class="letters_field">АБВ</p>
+<div [@moving_letters]="stateOfLetter" class="letters_field">
+  <div class="moving_letters">
+    <p class="main_letters" id="main_letter">{{masLetters[0]}}</p>
+    <p *ngFor="let letter of masLetters.slice(1, masLetters.length)" class="letters">{{letter}}</p>
+  </div>
 </div>
+
 
 
 

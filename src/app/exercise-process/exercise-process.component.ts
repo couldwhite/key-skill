@@ -13,17 +13,15 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
   animations: [
     trigger('moving_letters',[
       state('start', style({
-        backgroungColor: 'blue',
-        width: '150px',
-        height: '150px'
+        display: 'flex',
+        justifyContent: 'left',
       })),
       state('end', style({
-        backgroungColor: 'red',
-        width: '300px',
-        height: '300px'
+        display: 'flex',
+        justifyContent: 'left '
       })),
       transition('start=>end', [
-        animate(500)
+        animate(1500)
       ])
     ])
   ],
@@ -34,17 +32,26 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 })
 export class ExerciseProcessComponent implements OnInit {
 
+  stateOfLetter: string = 'start';
+  masLetters = ["А", "Б", "В", "Г", "Д", "А", "Б", "В", "Г", "Д", "А", "Б", "В", "Г", "Д", "А", "Б", "В", "Г", "Д"]
+
   constructor(public m: MatKeyboardConfig, public s: MatKeyboardService, public kc: MatKeyboardKeyComponent,
               public d: MatKeyboardDirective) { }
 
   ngOnInit(): void {
+     let mainClass = this;
 
- //   this.s.open("Русский", this.m);
+    document.addEventListener('keydown', function(event) {
+      if(event.key.toLowerCase()==mainClass.masLetters[0].toLowerCase()){
+        mainClass.masLetters = mainClass.masLetters.slice(1, mainClass.masLetters.length)
+      }
+    });
+   /* setTimeout(()=>
+      this.stateOfLetter = 'end'
+    )*/
   }
 
-  a(){
-
-
+  openKeyboard(){
   }
 
 }

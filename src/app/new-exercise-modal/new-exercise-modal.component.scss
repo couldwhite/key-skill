@@ -6,10 +6,18 @@
   background-color: #c5eec4;
   border: 0;
   width: 444px;
-  padding: 8px 0 8px 6px;
+  padding: 10px 0 10px 6px;
   border-radius: 4px 4px 4px 4px;
   margin-bottom: 1%;
   font-family: Roboto;
+}
+.not_input_field{
+  background-color: grey;
+  border: 0;
+  width: 444px;
+  padding: 10px 0 10px 6px;
+  border-radius: 4px 4px 4px 4px;
+  margin-bottom: 1%;
 }
 option{
   font-family: Roboto;
@@ -19,9 +27,15 @@ option{
   src: url("../../fonts/RobotoSlab-Regular.woff") format("woff");
 }
 
-::ng-deep.mat-form-field-appearance-fill .mat-form-field-flex {
-  /*change color of underline*/
+::ng-deep.mat-form-field-appearance-fill .mat-form-field-flex{
   background-color: #c5eec4 !important;
+  padding-top: 0!important;
+  width: 450px!important;
+  border-radius: 4px 4px 4px 4px!important;
+}
+
+ .enable{
+  background-color: grey !important;
   padding-top: 0!important;
   width: 450px!important;
   border-radius: 4px 4px 4px 4px!important;

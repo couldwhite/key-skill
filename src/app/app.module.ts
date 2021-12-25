@@ -9,7 +9,7 @@ import {HomeComponent} from './home/home.component';
 import {UserComponent} from './user/user.component';
 import {ModComponent} from './mod/mod.component';
 import {AdminComponent} from './admin/admin.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {httpInterceptorProviders} from "./auth/auth-interceptor";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -42,7 +42,6 @@ import {MatKeyboardConfig, MatKeyboardModule} from "angular-onscreen-material-ke
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MatInputModule,
@@ -50,7 +49,8 @@ import {MatKeyboardConfig, MatKeyboardModule} from "angular-onscreen-material-ke
     MatDialogModule,
     MatSelectModule,
     MatKeyboardModule,
-
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

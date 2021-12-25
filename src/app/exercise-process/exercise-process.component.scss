@@ -1,13 +1,25 @@
 .letters_field{
   background-color: #c9f0c8;
-  padding: 4% 30% 4% 30%;
+  padding: 50px 30px 50px 30px;
   border-radius: 8px 8px 8px 8px;
+  width: 950px;
+  margin:0 auto;
+  overflow-x:hidden;
+  overflow-y: hidden;
+}
+
+.moving_letters{
+  display: flex;
+  justify-content: right;
+  padding-right: 10px;
+}
+
+.main_letters{
   font-size: 150px;
 }
 
-.work{
-  display: flex;
-  justify-content: center;
+.letters{
+  font-size: 100px;
 }
 
 .info{
@@ -19,7 +31,6 @@
 p{
   font-size: 17px;
 }
-
 input{
   font-size: 17px;
 }

@@ -39,16 +39,12 @@ a {
   grid-template-columns: 1fr 1fr 1fr;
 }
 
-.btn_add{
-  padding: 1px 15px 1px 15px ;
-  border-radius: 50% 50% 50% 50%;
-  background-color: #45b05d;
-  color: white;
-  font-size: 60px;
-}
-
 .all_items{
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.but{
+  padding-left: 70%;
 }
