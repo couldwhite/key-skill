@@ -4,27 +4,38 @@
     <div class="settings">
       <div>
         <p>Уровень сложности</p>
-        <input type="checkbox">Начальный<br>
-        <input type="checkbox">Средний<br>
-        <input type="checkbox">Продвинутый<br><br><br>
+        <input type="checkbox" (change)="pushLevelValue(1)">Начальный<br>
+        <input type="checkbox" (change)="pushLevelValue(2)">Средний<br>
+        <input type="checkbox" (change)="pushLevelValue(3)">Продвинутый<br><br><br>
         <p>Длина упражнения</p>
-        <input type="checkbox">Короткие (40-60)<br>
-        <input type="checkbox">Средние (60-80)<br>
-        <input type="checkbox">Длинные (80-100)<br>
+        <input type="checkbox" (change)="pushLengthValue(1)">Короткие (40-60)<br>
+        <input type="checkbox" (change)="pushLengthValue(2)">Средние (61-80)<br>
+        <input type="checkbox" (change)="pushLengthValue(3)">Длинные (81-100)<br>
       </div>
       <div>
         <hr class="vert_hr" width="1" size="500">
       </div>
     </div>
     <div class="exercises">
-      <a  class="button_exercise" *ngFor="let exercise of allExercises" href="/exercise-process">
-        <a><b>{{exercise.name}}</b><br>
-          Уровень: {{getNameOfLevel(exercise.levelNumber)}}<br>
-          Длина (в символах): {{exercise.length}}<br>
-          Максимальное количество ошибок: {{exercise.maxErrors}}<br>
-          Задействованные пальцы: {{getFingers(exercise.keyZone)}}
+
+        <a class="button_exercise" >
+          <a><b>Имя</b><br>
+            Уровень: Начальный<br>
+            Длина (в символах): 80<br>
+            Максимальное количество ошибок: 3<br>
+            Задействованные пальцы: все
+          </a>
         </a>
-      </a>
+      <ng-container *ngFor="let exercise of allExercises">
+        <a class="button_exercise" *ngIf="checkLevelValue(exercise.levelNumber)&&checkLengthValue(exercise.length)" href="/exercise-process">
+          <a><b>{{exercise.name}}</b><br>
+            Уровень: {{getNameOfLevel(exercise.levelNumber)}}<br>
+            Длина (в символах): {{exercise.length}}<br>
+            Максимальное количество ошибок: {{exercise.maxErrors}}<br>
+            Задействованные пальцы: {{getFingers(exercise.keyZone)}}
+          </a>
+        </a>
+      </ng-container>
     </div>
   </div>
   <div>

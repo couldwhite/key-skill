@@ -3,8 +3,8 @@ export class Exercise {
   keyZone: number[];
   maxTimeKick: number;
   maxErrors: number;
-  name: string;
-  masOfSymbols: string;
-  creatingWay: string;
+  name: string ;
+  masOfSymbols: string ;
+  creatingWay: string ;
   length: number;
 }

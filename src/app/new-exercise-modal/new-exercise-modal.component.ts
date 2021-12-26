@@ -20,12 +20,13 @@ interface Zone{
 })
 export class NewExerciseModalComponent implements OnInit {
 
+  public exercise: Exercise = new Exercise();
   display_all = false;
   myForm: FormGroup = new FormGroup({
-    "levelNumber": new FormControl("", Validators.required),
+    "levelNumber": new FormControl({disabled: true}, Validators.required),
     "keyZone": new FormControl("", Validators.required),
     "maxTimeKick": new FormControl("", Validators.required),
-    "maxErrors": new FormControl("", Validators.required),
+    "maxErrors": new FormControl(""),
     "name": new FormControl("", Validators.required),
     "masOfSymbols": new FormControl("", Validators.required),
     "creatingWay": new FormControl("", Validators.required),
@@ -33,13 +34,12 @@ export class NewExerciseModalComponent implements OnInit {
   })
 
   constructor(public dialogRef: MatDialogRef<NewExerciseModalComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: Exercise,
               private exerciseService: ExerciseService) { }
 
   public levels: Level[] = [
     {key: 1, value: "Начальный"},
     {key: 2, value: "Средний"},
-    {key: 2, value: "Продвинутый"}
+    {key: 3, value: "Продвинутый"}
   ]
 
 
@@ -63,23 +63,28 @@ export class NewExerciseModalComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  onSave(): boolean{
-    this.validateFields();
-    this.dialogRef.close();
-    this.data.maxErrors = Math.round(this.data.length/10);
-    this.data.masOfSymbols = "";
-    this.exerciseService.addExercise(this.data).subscribe();
-    setTimeout("window.location.reload()",10);
-    return true;
+  onSave() {
+    if (!this.checkNotAutoInput()){
+      this.myForm.controls.masOfSymbols.clearValidators();
+      this.myForm.controls.masOfSymbols.updateValueAndValidity();
+      console.log(this.myForm)
+    }
+    if (this.myForm.valid){
+      console.log(this.exercise)
+      this.exercise.maxErrors = Math.round(this.exercise.length/10);
+      this.exerciseService.addExercise(this.exercise).subscribe();
+      this.dialogRef.close();
+      setTimeout("window.location.reload()",100);
+    }
   }
 
   displayAll(): void{
     this.display_all=true;
   }
 
-  validateFields(){
-    if (isNaN(this.data.length))
-      console.log("Пусто")
+  checkNotAutoInput(): boolean{
+    console.log(this.exercise.creatingWay == "Вручную")
+    return this.exercise.creatingWay == "Вручную"
   }
 
 }
