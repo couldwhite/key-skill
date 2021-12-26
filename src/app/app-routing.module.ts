@@ -41,8 +41,8 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'exercise-process',
-    component: ExerciseProcessComponent
+    path: 'exercises/exercise-process/:id',
+    component: ExerciseProcessComponent,
   },
 ];
 

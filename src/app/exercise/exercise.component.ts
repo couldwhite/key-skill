@@ -6,6 +6,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {NewExerciseModalComponent} from "../new-exercise-modal/new-exercise-modal.component";
 import {Router} from "@angular/router";
 import {of} from "rxjs";
+import {DeleteExerciseModalComponent} from "../delete-exercise-modal/delete-exercise-modal.component";
 
 @Component({
   selector: 'app-exercise',
@@ -112,12 +113,11 @@ export class ExerciseComponent implements OnInit {
     else return false;
   }
 
-  openExercise(id: number){
-    const exercise = of(this.allExercises.find(el=> {
-      el.id = id;
-      this.exercise = el;
-    }));
-    exercise.subscribe(()=>this.router.navigateByUrl('exercise-process'));
+  deleteExercise(id: number){
+    const dialogRef = this.dialog.open(DeleteExerciseModalComponent, {
+      width: '500px',
+      data: {id: id}
+    })
+    dialogRef.afterClosed().subscribe(result => console.log(result))
   }
-
 }
