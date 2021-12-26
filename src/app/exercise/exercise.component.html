@@ -17,17 +17,8 @@
       </div>
     </div>
     <div class="exercises">
-
-        <a class="button_exercise" >
-          <a><b>Имя</b><br>
-            Уровень: Начальный<br>
-            Длина (в символах): 80<br>
-            Максимальное количество ошибок: 3<br>
-            Задействованные пальцы: все
-          </a>
-        </a>
       <ng-container *ngFor="let exercise of allExercises">
-        <a class="button_exercise" *ngIf="checkLevelValue(exercise.levelNumber)&&checkLengthValue(exercise.length)" href="/exercise-process">
+        <a class="button_exercise" *ngIf="checkLevelValue(exercise.levelNumber)&&checkLengthValue(exercise.length)" (click)="openExercise(exercise.id)" >
           <a><b>{{exercise.name}}</b><br>
             Уровень: {{getNameOfLevel(exercise.levelNumber)}}<br>
             Длина (в символах): {{exercise.length}}<br>

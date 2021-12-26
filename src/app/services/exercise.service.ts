@@ -1,7 +1,7 @@
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import {AuthLoginInfo} from "../auth/login-info";
-import {Observable} from "rxjs";
+import {Observable, Subject} from "rxjs";
 import {JwtResponse} from "../auth/jwt-response";
 import {SignUpInfo} from "../auth/signup-info";
 import {Exercise} from "../domain/exercise";
@@ -15,6 +15,8 @@ const httpOptions = {
 })
 export class ExerciseService {
 
+  public id = new Subject<number>();
+
   private exerciseUrl = 'http://localhost:8080/api/exercise';
 
   getAllExercises(): Observable<Exercise[]> {
@@ -23,6 +25,14 @@ export class ExerciseService {
 
   addExercise(exercise: Exercise): Observable<Exercise>{
     return this.http.post<Exercise>(`${this.exerciseUrl}/createExercise`, exercise, httpOptions);
+  }
+
+  chooseId(id: number){
+    return this.id.next(id);
+  }
+
+  getId(): Observable<number>{
+    return this.id.asObservable();
   }
 
   constructor(private http: HttpClient) { }

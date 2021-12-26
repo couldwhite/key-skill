@@ -25,6 +25,6 @@ export class NewUserModalComponent implements OnInit {
   onSave(): void{
     this.dialogRef.close(this.data);
     console.log(this.data);
-   this.addUserService.attemptAuth(this.data).subscribe();
+   this.addUserService.attemptAuth(this.data).subscribe(()=>window.location.reload());
   }
 }

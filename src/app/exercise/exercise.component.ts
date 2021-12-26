@@ -4,6 +4,8 @@ import {Exercise} from "../domain/exercise";
 import {NewUserModalComponent} from "../new-user-modal/new-user-modal.component";
 import {MatDialog} from "@angular/material/dialog";
 import {NewExerciseModalComponent} from "../new-exercise-modal/new-exercise-modal.component";
+import {Router} from "@angular/router";
+import {of} from "rxjs";
 
 @Component({
   selector: 'app-exercise',
@@ -15,19 +17,22 @@ import {NewExerciseModalComponent} from "../new-exercise-modal/new-exercise-moda
 export class ExerciseComponent implements OnInit {
 
   public exercise: Exercise = new Exercise();
+  public idEx: number = 0;
 
   chooseLevel: number[] = [];
   chooseLength: number[] = [];
 
-  constructor(private exerciseService: ExerciseService, public dialog: MatDialog) {
+
+  constructor(private exerciseService: ExerciseService, public dialog: MatDialog, public router: Router) {
   }
 
-  allExercises: Exercise[] = [];
+  public allExercises: Exercise[] = [];
 
   ngOnInit(): void {
     this.exerciseService.getAllExercises().subscribe(response => {
       this.allExercises = response;
     });
+
   }
 
   openModal(): void {
@@ -105,6 +110,14 @@ export class ExerciseComponent implements OnInit {
       return true;
     }
     else return false;
+  }
+
+  openExercise(id: number){
+    const exercise = of(this.allExercises.find(el=> {
+      el.id = id;
+      this.exercise = el;
+    }));
+    exercise.subscribe(()=>this.router.navigateByUrl('exercise-process'));
   }
 
 }

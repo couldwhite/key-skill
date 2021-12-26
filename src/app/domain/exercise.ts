@@ -1,4 +1,5 @@
 export class Exercise {
+  id: number;
   levelNumber: number;
   keyZone: number[];
   maxTimeKick: number;
