@@ -18,13 +18,15 @@
     </div>
     <div class="exercises">
       <ng-container *ngFor="let exercise of allExercises">
-        <a class="button_exercise" *ngIf="checkLevelValue(exercise.levelNumber)&&checkLengthValue(exercise.length)" (click)="openExercise(exercise.id)" >
+        <a class="button_exercise" *ngIf="checkLevelValue(exercise.levelNumber)&&checkLengthValue(exercise.length)"
+           a [routerLink]="['exercise-process', exercise.id]">
           <a><b>{{exercise.name}}</b><br>
             Уровень: {{getNameOfLevel(exercise.levelNumber)}}<br>
             Длина (в символах): {{exercise.length}}<br>
             Максимальное количество ошибок: {{exercise.maxErrors}}<br>
             Задействованные пальцы: {{getFingers(exercise.keyZone)}}
           </a>
+          <img class="exercises_delete" src="./assets/rubbish.png" alt="Удалить" (click)="deleteExercise(exercise.id)">
         </a>
       </ng-container>
     </div>

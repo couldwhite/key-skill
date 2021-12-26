@@ -1,4 +1,4 @@
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import {AuthLoginInfo} from "../auth/login-info";
 import {Observable, Subject} from "rxjs";
@@ -7,15 +7,15 @@ import {SignUpInfo} from "../auth/signup-info";
 import {Exercise} from "../domain/exercise";
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExerciseService {
 
-  public id = new Subject<number>();
 
   private exerciseUrl = 'http://localhost:8080/api/exercise';
 
@@ -27,12 +27,11 @@ export class ExerciseService {
     return this.http.post<Exercise>(`${this.exerciseUrl}/createExercise`, exercise, httpOptions);
   }
 
-  chooseId(id: number){
-    return this.id.next(id);
-  }
-
-  getId(): Observable<number>{
-    return this.id.asObservable();
+  getById(id: number): Observable<Exercise>{
+    return this.http.get<Exercise>(`${this.exerciseUrl}/getExerciseById/`, {
+      params: new HttpParams().append('id', id),
+      headers: new HttpHeaders().append('Content-Type', 'application/json')
+    });
   }
 
   constructor(private http: HttpClient) { }

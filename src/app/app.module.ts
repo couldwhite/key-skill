@@ -23,6 +23,7 @@ import { NewExerciseModalComponent } from './new-exercise-modal/new-exercise-mod
 import {MatSelectModule} from "@angular/material/select";
 import { ExerciseProcessComponent } from './exercise-process/exercise-process.component';
 import {MatKeyboardConfig, MatKeyboardModule} from "angular-onscreen-material-keyboard";
+import { DeleteExerciseModalComponent } from './delete-exercise-modal/delete-exercise-modal.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import {MatKeyboardConfig, MatKeyboardModule} from "angular-onscreen-material-ke
     LogoutComponent,
     NewExerciseModalComponent,
     ExerciseProcessComponent,
+    DeleteExerciseModalComponent,
   ],
   imports: [
     BrowserModule,
