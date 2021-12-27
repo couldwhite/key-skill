@@ -10,7 +10,7 @@
         <label for="username">Введите логин:</label>
 
         <mat-form-field appearance="fill" >
-          <input matInput name="username" [(ngModel)]="form.username" #username="ngModel"
+          <input matInput name="username"  [(ngModel)]="form.username" #username="ngModel"
                  required />
         </mat-form-field>
         <div *ngIf="f.submitted && username.invalid">
@@ -20,7 +20,7 @@
       <div class="form-group">
         <label for="password">Введите пароль:</label>
         <mat-form-field appearance="fill">
-          <input matInput name="password" [(ngModel)]="form.password" #password="ngModel"
+          <input matInput name="password" type="password" [(ngModel)]="form.password" #password="ngModel"
                  required minlength="3" />
         </mat-form-field>
         <div *ngIf="f.submitted && password.invalid">

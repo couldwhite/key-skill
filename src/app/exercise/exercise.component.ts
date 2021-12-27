@@ -7,6 +7,7 @@ import {NewExerciseModalComponent} from "../new-exercise-modal/new-exercise-moda
 import {Router} from "@angular/router";
 import {of} from "rxjs";
 import {DeleteExerciseModalComponent} from "../delete-exercise-modal/delete-exercise-modal.component";
+import {TokenStorageService} from "../auth/token-storage.service";
 
 @Component({
   selector: 'app-exercise',
@@ -24,7 +25,7 @@ export class ExerciseComponent implements OnInit {
   chooseLength: number[] = [];
 
 
-  constructor(private exerciseService: ExerciseService, public dialog: MatDialog, public router: Router) {
+  constructor(private tokenStorage: TokenStorageService, private exerciseService: ExerciseService, public dialog: MatDialog, public router: Router) {
   }
 
   public allExercises: Exercise[] = [];
@@ -68,56 +69,52 @@ export class ExerciseComponent implements OnInit {
   }
 
   pushLevelValue(value: number) {
-    if (!this.chooseLevel.includes(value)){
+    if (!this.chooseLevel.includes(value)) {
       this.chooseLevel.push(value);
-    }
-    else this.chooseLevel = this.chooseLevel.filter((item)=> {
+    } else this.chooseLevel = this.chooseLevel.filter((item) => {
       return item !== value
     })
   }
 
   pushLengthValue(value: number) {
-    if (!this.chooseLength.includes(value)){
+    if (!this.chooseLength.includes(value)) {
       this.chooseLength.push(value);
-    }
-    else this.chooseLength = this.chooseLength.filter((item)=> {
+    } else this.chooseLength = this.chooseLength.filter((item) => {
       return item !== value
     })
   }
 
-  checkLengthValue(value: number){
-    if (this.chooseLength.length == 0){
+  checkLengthValue(value: number) {
+    if (this.chooseLength.length == 0) {
       return true;
-    }
-    else {
-      if (value>39&&value<61&&this.chooseLength.includes(1)){
+    } else {
+      if (value > 39 && value < 61 && this.chooseLength.includes(1)) {
         return true;
-      }
-      else if (value>60&&value<81&&this.chooseLength.includes(2)){
+      } else if (value > 60 && value < 81 && this.chooseLength.includes(2)) {
         return true;
-      }
-      else if (value>80&&value<101&&this.chooseLength.includes(3)){
+      } else if (value > 80 && value < 101 && this.chooseLength.includes(3)) {
         return true;
-      }
-      else return false;
+      } else return false;
     }
   }
 
-  checkLevelValue(value: number){
-    if (this.chooseLevel.length == 0){
+  checkLevelValue(value: number) {
+    if (this.chooseLevel.length == 0) {
       return true;
-    }
-    else if (this.chooseLevel.includes(value)) {
+    } else if (this.chooseLevel.includes(value)) {
       return true;
-    }
-    else return false;
+    } else return false;
   }
 
-  deleteExercise(id: number){
+  deleteExercise(id: number) {
     const dialogRef = this.dialog.open(DeleteExerciseModalComponent, {
-      width: '500px',
+      width: '400px',
       data: {id: id}
     })
     dialogRef.afterClosed().subscribe(result => console.log(result))
+  }
+
+  chekAdminRole(): boolean {
+    return this.tokenStorage.getAuthorities().includes('ROLE_ADMIN');
   }
 }

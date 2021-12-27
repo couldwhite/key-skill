@@ -16,7 +16,7 @@
   position: relative;
 }
 
-a {
+button {
   font-family: "Roboto";
   font-size: 16px;
   color: #56674c;
@@ -31,6 +31,7 @@ a {
   right: 5px;
   bottom: 5px;
   height: 30px;
+  cursor: pointer;
 }
 
 .settings {

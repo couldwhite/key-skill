@@ -52,8 +52,9 @@ export class GeneralStatisticComponent implements OnInit {
       this.allGeneralStatistics.forEach(el=>this.names.push(el.name))
       this.allGeneralStatistics.forEach(el=>this.successfulAttempts.push(el.successfulAttempts))
       this.allGeneralStatistics.forEach(el=>this.unsuccessfulAttempts.push(el.unsuccessfulAttempts))
+      this.showDiagram()
     });
-    this.showDiagram();
+
   }
   showDiagram() {
     this.chartOptions = {
@@ -63,7 +64,7 @@ export class GeneralStatisticComponent implements OnInit {
           data: this.successfulAttempts
         },
         {
-          name: "Количество успешных попыток",
+          name: "Количество неуспешных попыток",
           data: this.unsuccessfulAttempts
         }
       ],
@@ -80,7 +81,7 @@ export class GeneralStatisticComponent implements OnInit {
       },
       responsive: [
         {
-          breakpoint: 480,
+          breakpoint: 680,
           options: {
             legend: {
               position: "bottom",
@@ -100,8 +101,8 @@ export class GeneralStatisticComponent implements OnInit {
         categories: this.names
       },
       legend: {
-        position: "right",
-        offsetY: 40
+        position: "top",
+        offsetY: 20
       },
       fill: {
         opacity: 1

@@ -9,6 +9,9 @@ import { AdminComponent } from './admin/admin.component';
 import {ExerciseComponent} from "./exercise/exercise.component";
 import {ExerciseProcessComponent} from "./exercise-process/exercise-process.component";
 import {GeneralStatisticComponent} from "./general-statistic/general-statistic.component";
+import {UserStatisticComponent} from "./user-statistic/user-statistic.component";
+import {ReferenceUserComponent} from "./reference-user/reference-user.component";
+import {ReferenceAdminComponent} from "./reference-admin/reference-admin.component";
 
 const routes: Routes = [
   {
@@ -49,6 +52,18 @@ const routes: Routes = [
     path: 'general-statistic',
     component: GeneralStatisticComponent
   },
+  {
+    path: 'user-statistic',
+    component: UserStatisticComponent
+  },
+  {
+    path: 'reference-user',
+    component: ReferenceUserComponent
+  },
+  {
+    path: 'reference-admin',
+    component: ReferenceAdminComponent
+  }
 ];
 
 @NgModule({

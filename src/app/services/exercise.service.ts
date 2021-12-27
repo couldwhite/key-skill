@@ -34,5 +34,12 @@ export class ExerciseService {
     });
   }
 
+  deleteExercise(id: string): Observable<string>{
+    return this.http.post<string>(`${this.exerciseUrl}/deleteExercise/`,{}, {
+      params: new HttpParams().append('id', id),
+      headers: new HttpHeaders().append('Content-Type', 'application/json')
+    });
+  }
+
   constructor(private http: HttpClient) { }
 }

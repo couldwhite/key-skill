@@ -26,6 +26,11 @@ import {MatKeyboardConfig, MatKeyboardModule} from "angular-onscreen-material-ke
 import { DeleteExerciseModalComponent } from './delete-exercise-modal/delete-exercise-modal.component';
 import { GeneralStatisticComponent } from './general-statistic/general-statistic.component';
 import { NgApexchartsModule } from "ng-apexcharts";
+import {MatButtonModule} from "@angular/material/button";
+import { ErrorExitGameModalComponent } from './error-exit-game-modal/error-exit-game-modal.component';
+import { SuccessGameModalComponent } from './success-game-modal/success-game-modal.component';
+import { ReferenceUserComponent } from './reference-user/reference-user.component';
+import { ReferenceAdminComponent } from './reference-admin/reference-admin.component';
 
 
 @NgModule({
@@ -44,21 +49,26 @@ import { NgApexchartsModule } from "ng-apexcharts";
     ExerciseProcessComponent,
     GeneralStatisticComponent,
     DeleteExerciseModalComponent,
+    ErrorExitGameModalComponent,
+    SuccessGameModalComponent,
+    ReferenceUserComponent,
+    ReferenceAdminComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatDialogModule,
-    MatSelectModule,
-    MatKeyboardModule,
-    ReactiveFormsModule,
-    FormsModule,
-    NgApexchartsModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatDialogModule,
+        MatSelectModule,
+        MatKeyboardModule,
+        ReactiveFormsModule,
+        FormsModule,
+        NgApexchartsModule,
+        MatButtonModule
+    ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })

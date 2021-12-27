@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {GeneralStatistic} from "../domain/general_statistic";
 
@@ -19,5 +19,12 @@ export class GeneralStatisticServer {
 
   getAllGeneralStatistics(): Observable<GeneralStatistic[]> {
     return this.http.get<GeneralStatistic[]>(`${this.statisticUrl}/getAllGeneralStatistics`, httpOptions);
+  }
+
+  addStatistic(id: string, flag: boolean): Observable<string>{
+    return this.http.post<string>(`${this.statisticUrl}/changeNumberOfAttempts/`,{}, {
+      params: new HttpParams().appendAll({'flag': flag, 'id' : id}),
+      headers: new HttpHeaders().append('Content-Type', 'application/json')
+    });
   }
 }

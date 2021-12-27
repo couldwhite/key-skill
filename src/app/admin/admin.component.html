@@ -8,6 +8,8 @@
       <a><b>{{user.username}}</b><br>Упражнений выполнено: 0</a>
     </button>
   </div>
-  <button class="btn_add" (click)="openModal()">+</button>
+  <div class="fix_button">
+    <input  *ngIf="chekAdminRole()" class="but" type="image" src="../../assets/plus.png" width="50%" height="50%" (click)="openModal()">
+  </div>
 </div>
 

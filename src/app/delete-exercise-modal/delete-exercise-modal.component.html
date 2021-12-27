@@ -6,3 +6,7 @@
 <div mat-dialog-content>
     <p>Отменить данное действие невозможно</p>
 </div>
+<div mat-dialog-actions class="buttons">
+  <button (click)="onDelete()" class="exit">Да </button>
+  <button  (click)="onClose()">Нет</button>
+</div>

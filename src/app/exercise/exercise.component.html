@@ -18,20 +18,20 @@
     </div>
     <div class="exercises">
       <ng-container *ngFor="let exercise of allExercises">
-        <a class="button_exercise" *ngIf="checkLevelValue(exercise.levelNumber)&&checkLengthValue(exercise.length)"
-           a [routerLink]="['exercise-process', exercise.id]">
+        <button class="button_exercise" [ngStyle]="chekAdminRole()?{}:{'cursor': 'pointer' }" *ngIf="checkLevelValue(exercise.levelNumber)&&checkLengthValue(exercise.length)"
+           a [routerLink]="['exercise-process', exercise.id]" [disabled]="chekAdminRole()">
           <a><b>{{exercise.name}}</b><br>
             Уровень: {{getNameOfLevel(exercise.levelNumber)}}<br>
             Длина (в символах): {{exercise.length}}<br>
             Максимальное количество ошибок: {{exercise.maxErrors}}<br>
             Задействованные пальцы: {{getFingers(exercise.keyZone)}}
           </a>
-          <img class="exercises_delete" src="./assets/rubbish.png" alt="Удалить" (click)="deleteExercise(exercise.id)">
-        </a>
+          <img *ngIf="chekAdminRole()" class="exercises_delete" src="./assets/rubbish.png" alt="Удалить" (click)="deleteExercise(exercise.id)">
+        </button>
       </ng-container>
     </div>
   </div>
-  <div>
-    <input class="but" type="image" src="../../assets/plus.png" width="40%" height="40%" (click)="openModal()">
+  <div class="fix_button">
+    <input *ngIf="chekAdminRole()" class="but" type="image" src="../../assets/plus.png" width="50%" height="50%" (click)="openModal()">
   </div>
 </div>

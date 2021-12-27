@@ -3,12 +3,15 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 import {ExerciseService} from "../services/exercise.service";
 import {ActivatedRoute} from "@angular/router";
 import {Exercise} from "../domain/exercise";
+import {MatDialog} from "@angular/material/dialog";
+import {ErrorExitGameModalComponent} from "../error-exit-game-modal/error-exit-game-modal.component";
+import {GeneralStatisticServer} from "../services/general_statistic.server";
 
 
 @Component({
   selector: 'app-exercise-process',
   animations: [
-    trigger('moving_letters',[
+    trigger('moving_letters', [
       state('start', style({
         display: 'flex',
         justifyContent: 'left',
@@ -34,29 +37,35 @@ export class ExerciseProcessComponent implements OnInit {
   masLetters: string[] = [];
   errorProcess = 0;
 
-  constructor(private activateRoute: ActivatedRoute, service: ExerciseService) {
+  constructor(private activateRoute: ActivatedRoute, service: ExerciseService, public dialog: MatDialog, private statService: GeneralStatisticServer) {
     this.id = activateRoute.snapshot.params['id'];
-    service.getById(this.id).subscribe(el=>{
-      this.exercise=el;
+    service.getById(this.id).subscribe(el => {
+      this.exercise = el;
       this.masLetters = el.masOfSymbols.split("");
-      console.log(this.masLetters)
-      console.log(el)
     })
   }
 
   ngOnInit(): void {
 
-     let mainClass = this;
-    document.addEventListener('keydown', function(event) {
-      if(event.key.toLowerCase()==mainClass.masLetters[0].toLowerCase()){
+    let mainClass = this;
+    document.addEventListener('keydown', function (event) {
+      if (event.key.toLowerCase() == mainClass.masLetters[0].toLowerCase()) {
         mainClass.masLetters = mainClass.masLetters.slice(1, mainClass.masLetters.length)
-      }
-      else {
+        console.log(mainClass.masLetters.length)
+        if (mainClass.masLetters.length==0){
+          mainClass.statService.addStatistic(mainClass.id.toString(), true).subscribe();
+        }
+      } else {
         mainClass.errorProcess++;
-        if (mainClass.errorProcess==mainClass.exercise.maxErrors){
-          alert("Ваши попытки закончились")
+        if (mainClass.errorProcess == mainClass.exercise.maxErrors) {
+          mainClass.statService.addStatistic(mainClass.id.toString(), false).subscribe();
+          const dialogRef = mainClass.dialog.open(ErrorExitGameModalComponent, {
+            width: '250px'
+          })
+          dialogRef.afterClosed().subscribe();
         }
       }
+
     });
 
   }

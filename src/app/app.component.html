@@ -16,11 +16,16 @@
     <button>
       <a [routerLink]="['exercises']">Упражнения</a>
     </button>
-    <button>
-      <a [routerLink]="['general-statistic']">Статистика</a>
+    <button *ngIf="authority=='admin'; else user">
+      <a  [routerLink]="['general-statistic']">Статистика</a>
     </button>
+    <ng-template #user>
+      <button >
+        <a  [routerLink]="['user-statistic']">Статистика</a>
+      </button>
+    </ng-template>
     <button>
-      <a [routerLink]="['']">Справка</a>
+      <a  [routerLink]="['']">Справка</a>
     </button>
     <button class="user_button" (click)="logout()">
       <p>{{username}}, {{authority==="admin"?"админ":"ученик"}}<br>Выйти</p>
