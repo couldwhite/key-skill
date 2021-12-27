@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   username: string;
 
   constructor(private tokenStorage: TokenStorageService,
-              public dialog: MatDialog, private router: Router) { }
+              public dialog: MatDialog) { }
 
   ngOnInit() {
     if (this.tokenStorage.getToken()) {
@@ -41,8 +41,7 @@ export class AppComponent implements OnInit {
       width: '375px'
     })
     dialogRef.afterClosed().subscribe(() => {
-      this.router.navigate(['home'])
-      window.location.reload();
+      window.location.reload()
     })
   }
 }

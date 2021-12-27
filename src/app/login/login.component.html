@@ -3,6 +3,16 @@
 </div>
 
 <ng-template #loggedOut>
+  <nav class="main">
+    <div class="main-img">
+      <div class="main-img__logo">
+        <img src="./assets/logo.png" alt="Логотип" height="80">
+      </div>
+      <div class="main-img__keyboard">
+        <img src="./assets/keyboard.png" alt="Клавиатура" height="50">
+      </div>
+    </div>
+  </nav>
   <div *ngIf="!isLoggedIn" class="row" >
     <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
       <p>Для начала работы в клавиатурном тренажере вам<br> необходимо войти</p>

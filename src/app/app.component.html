@@ -1,14 +1,5 @@
-<nav class="main" *ngIf="!authority; else loggedIn">
-  <div class="main-img">
-    <div class="main-img__logo">
-      <img src="./assets/logo.png" alt="Логотип" height="80">
-    </div>
-    <div class="main-img__keyboard">
-      <img src="./assets/keyboard.png" alt="Клавиатура" height="50">
-    </div>
-  </div>
-</nav>
-<ng-template #loggedIn>
+
+<div *ngIf="authority">
   <nav class="log_in">
     <button>
       <a [routerLink]="['users']">Пользователи</a>
@@ -36,7 +27,7 @@
       <p>{{username}}, {{authority === "admin" ? "админ" : "ученик"}}<br>Выйти</p>
     </button>
   </nav>
-</ng-template>
+</div>
 <div class="container">
   <router-outlet></router-outlet>
 </div>

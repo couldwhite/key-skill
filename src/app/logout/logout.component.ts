@@ -11,7 +11,7 @@ import {Router} from "@angular/router";
 export class LogoutComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<LogoutComponent>,
-              private token: TokenStorageService) { }
+              private token: TokenStorageService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -22,6 +22,7 @@ export class LogoutComponent implements OnInit {
 
   onExit(): void{
     this.token.saveToken("");
+    this.router.navigate(['home'])
     this.dialogRef.close()
   }
 }
