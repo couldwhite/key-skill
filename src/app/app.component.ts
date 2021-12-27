@@ -4,6 +4,7 @@ import { TokenStorageService } from './auth/token-storage.service';
 import {NewUserModalComponent} from "./new-user-modal/new-user-modal.component";
 import {MatDialog} from "@angular/material/dialog";
 import {LogoutComponent} from "./logout/logout.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,7 @@ export class AppComponent implements OnInit {
   username: string;
 
   constructor(private tokenStorage: TokenStorageService,
-              public dialog: MatDialog) { }
+              public dialog: MatDialog, private router: Router) { }
 
   ngOnInit() {
     if (this.tokenStorage.getToken()) {
@@ -36,8 +37,12 @@ export class AppComponent implements OnInit {
 
 
   logout(): void{
-    this.dialog.open(LogoutComponent, {
+    const dialogRef = this.dialog.open(LogoutComponent, {
       width: '375px'
+    })
+    dialogRef.afterClosed().subscribe(() => {
+      this.router.navigate(['home'])
+      window.location.reload();
     })
   }
 }

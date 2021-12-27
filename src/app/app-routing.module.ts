@@ -3,8 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
-import { UserComponent } from './user/user.component';
 import { AdminComponent } from './admin/admin.component';
 import {ExerciseComponent} from "./exercise/exercise.component";
 import {ExerciseProcessComponent} from "./exercise-process/exercise-process.component";
@@ -19,11 +17,7 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'user',
-    component: UserComponent
-  },
-  {
-    path: 'admin',
+    path: 'users',
     component: AdminComponent
   },
   {

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialogRef} from "@angular/material/dialog";
 import {TokenStorageService} from "../auth/token-storage.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-logout',
@@ -21,6 +22,6 @@ export class LogoutComponent implements OnInit {
 
   onExit(): void{
     this.token.saveToken("");
-    window.location.reload();
+    this.dialogRef.close()
   }
 }

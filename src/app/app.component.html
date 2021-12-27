@@ -11,30 +11,32 @@
 <ng-template #loggedIn>
   <nav class="log_in">
     <button>
-      <a [routerLink]="['']">Пользователи</a>
+      <a [routerLink]="['users']">Пользователи</a>
     </button>
     <button>
       <a [routerLink]="['exercises']">Упражнения</a>
     </button>
-    <button *ngIf="authority=='admin'; else user">
-      <a  [routerLink]="['general-statistic']">Статистика</a>
+    <button *ngIf="authority=='admin'; else userStat">
+      <a [routerLink]="['general-statistic']">Статистика</a>
     </button>
-    <ng-template #user>
-      <button >
-        <a  [routerLink]="['user-statistic']">Статистика</a>
+    <ng-template #userStat>
+      <button>
+        <a [routerLink]="['user-statistic']">Статистика</a>
       </button>
     </ng-template>
-    <button>
-      <a  [routerLink]="['']">Справка</a>
+    <button *ngIf="authority=='admin' ; else userRef">
+      <a [routerLink]="['reference-admin']">Справка</a>
     </button>
+    <ng-template #userRef>
+      <button>
+        <a [routerLink]="['reference-user']">Справка</a>
+      </button>
+    </ng-template>
     <button class="user_button" (click)="logout()">
-      <p>{{username}}, {{authority==="admin"?"админ":"ученик"}}<br>Выйти</p>
+      <p>{{username}}, {{authority === "admin" ? "админ" : "ученик"}}<br>Выйти</p>
     </button>
   </nav>
 </ng-template>
 <div class="container">
-  <router-outlet *ngIf="authority; else needLogIn"></router-outlet>
-  <ng-template #needLogIn>
-    <app-login></app-login>
-  </ng-template>
+  <router-outlet></router-outlet>
 </div>
