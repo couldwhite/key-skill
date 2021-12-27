@@ -8,6 +8,7 @@ import { UserComponent } from './user/user.component';
 import { AdminComponent } from './admin/admin.component';
 import {ExerciseComponent} from "./exercise/exercise.component";
 import {ExerciseProcessComponent} from "./exercise-process/exercise-process.component";
+import {GeneralStatisticComponent} from "./general-statistic/general-statistic.component";
 
 const routes: Routes = [
   {
@@ -43,6 +44,10 @@ const routes: Routes = [
   {
     path: 'exercises/exercise-process/:id',
     component: ExerciseProcessComponent,
+  },
+  {
+    path: 'general-statistic',
+    component: GeneralStatisticComponent
   },
 ];
 

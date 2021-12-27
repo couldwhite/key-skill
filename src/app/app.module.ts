@@ -24,6 +24,9 @@ import {MatSelectModule} from "@angular/material/select";
 import { ExerciseProcessComponent } from './exercise-process/exercise-process.component';
 import {MatKeyboardConfig, MatKeyboardModule} from "angular-onscreen-material-keyboard";
 import { DeleteExerciseModalComponent } from './delete-exercise-modal/delete-exercise-modal.component';
+import { GeneralStatisticComponent } from './general-statistic/general-statistic.component';
+import { NgApexchartsModule } from "ng-apexcharts";
+
 
 @NgModule({
   declarations: [
@@ -39,6 +42,7 @@ import { DeleteExerciseModalComponent } from './delete-exercise-modal/delete-exe
     LogoutComponent,
     NewExerciseModalComponent,
     ExerciseProcessComponent,
+    GeneralStatisticComponent,
     DeleteExerciseModalComponent,
   ],
   imports: [
@@ -52,7 +56,8 @@ import { DeleteExerciseModalComponent } from './delete-exercise-modal/delete-exe
     MatSelectModule,
     MatKeyboardModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgApexchartsModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

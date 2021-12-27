@@ -1,0 +1,29 @@
+<table>
+  <tr>
+    <td>Название упражнения</td>
+    <td>Уровень сложности</td>
+    <td>Количество успешных попыток</td>
+    <td>Количество неуспешных попыток</td>
+  </tr>
+  <tr *ngFor="let general_statistic of allGeneralStatistics">
+    <td>{{general_statistic.name}}</td>
+    <td>{{general_statistic.difficultyLevel}}</td>
+    <td>{{general_statistic.successfulAttempts}}</td>
+    <td>{{general_statistic.unsuccessfulAttempts}}</td>
+  </tr>
+
+</table>
+<div id="chart">
+  <apx-chart
+    [series]="chartOptions.series"
+    [chart]="chartOptions.chart"
+    [dataLabels]="chartOptions.dataLabels"
+    [plotOptions]="chartOptions.plotOptions"
+    [responsive]="chartOptions.responsive"
+    [xaxis]="chartOptions.xaxis"
+    [legend]="chartOptions.legend"
+    [fill]="chartOptions.fill"
+  ></apx-chart>
+</div>
+
+
