@@ -9,9 +9,11 @@
     </button>
   </div>
   <ng-template #user_field class="str_users">
-    <button *ngFor="let user of allUsers">
-      <b>{{user.username}}</b><br>Упражнений выполнено: 0
-    </button>
+    <div>
+      <button *ngFor="let user of allUsers">
+        <b>{{user.username}}</b><br>Упражнений выполнено: 0
+      </button>
+    </div>
   </ng-template>
   <div class="fix_button">
     <input  *ngIf="chekAdminRole()" class="but" type="image" src="../../assets/plus.png" width="50%" height="50%" (click)="openModal()">

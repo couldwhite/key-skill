@@ -6,6 +6,8 @@ import {Exercise} from "../domain/exercise";
 import {MatDialog} from "@angular/material/dialog";
 import {ErrorExitGameModalComponent} from "../error-exit-game-modal/error-exit-game-modal.component";
 import {GeneralStatisticServer} from "../services/general_statistic.server";
+import {UserCardModalComponent} from "../user-card-modal/user-card-modal.component";
+import {SureStartGameModalComponent} from "../sure-start-game-modal/sure-start-game-modal.component";
 
 
 @Component({
@@ -37,7 +39,7 @@ export class ExerciseProcessComponent implements OnInit {
   masLetters: string[] = [];
   errorProcess = 0;
 
-  constructor(private activateRoute: ActivatedRoute, service: ExerciseService, public dialog: MatDialog, private statService: GeneralStatisticServer) {
+  constructor(public dialogStart: MatDialog, private activateRoute: ActivatedRoute, service: ExerciseService, public dialog: MatDialog, private statService: GeneralStatisticServer) {
     this.id = activateRoute.snapshot.params['id'];
     service.getById(this.id).subscribe(el => {
       this.exercise = el;
@@ -47,6 +49,11 @@ export class ExerciseProcessComponent implements OnInit {
 
   ngOnInit(): void {
 
+    const dialogRef = this.dialogStart.open(SureStartGameModalComponent, {
+      width: '460px',
+      data: {}
+    })
+    dialogRef.afterClosed().subscribe();
     let mainClass = this;
     document.addEventListener('keydown', function (event) {
       if (event.key.toLowerCase() == mainClass.masLetters[0].toLowerCase()) {

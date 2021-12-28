@@ -31,6 +31,7 @@ import { ReferenceUserComponent } from './reference-user/reference-user.componen
 import { ReferenceAdminComponent } from './reference-admin/reference-admin.component';
 import { UserCardModalComponent } from './user-card-modal/user-card-modal.component';
 import { SureDeleteUserModalComponent } from './sure-delete-user-modal/sure-delete-user-modal.component';
+import { SureStartGameModalComponent } from './sure-start-game-modal/sure-start-game-modal.component';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { SureDeleteUserModalComponent } from './sure-delete-user-modal/sure-dele
     ReferenceAdminComponent,
     UserCardModalComponent,
     SureDeleteUserModalComponent,
+    SureStartGameModalComponent,
   ],
     imports: [
         BrowserModule,
