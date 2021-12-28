@@ -29,6 +29,8 @@ import { ErrorExitGameModalComponent } from './error-exit-game-modal/error-exit-
 import { SuccessGameModalComponent } from './success-game-modal/success-game-modal.component';
 import { ReferenceUserComponent } from './reference-user/reference-user.component';
 import { ReferenceAdminComponent } from './reference-admin/reference-admin.component';
+import { UserCardModalComponent } from './user-card-modal/user-card-modal.component';
+import { SureDeleteUserModalComponent } from './sure-delete-user-modal/sure-delete-user-modal.component';
 
 
 @NgModule({
@@ -50,6 +52,8 @@ import { ReferenceAdminComponent } from './reference-admin/reference-admin.compo
     SuccessGameModalComponent,
     ReferenceUserComponent,
     ReferenceAdminComponent,
+    UserCardModalComponent,
+    SureDeleteUserModalComponent,
   ],
     imports: [
         BrowserModule,

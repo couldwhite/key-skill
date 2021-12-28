@@ -3,11 +3,16 @@
     <input class="search_field" type="text" placeholder="Введите логин">
     <img src="./assets/loupe.png" alt="Лупа" height="28">
   </div>
-  <div class="str_users">
-    <button *ngFor="let user of allUsers">
-      <a><b>{{user.username}}</b><br>Упражнений выполнено: 0</a>
+  <div  *ngIf="chekAdminRole(); else user_field" class="str_users" >
+    <button [ngStyle]="chekAdminRole()?{'cursor': 'pointer'}:{}" *ngFor="let user of allUsers" (click)="openUserCard(user.id)">
+      <b>{{user.username}}</b><br>Упражнений выполнено: 0
     </button>
   </div>
+  <ng-template #user_field class="str_users">
+    <button *ngFor="let user of allUsers">
+      <b>{{user.username}}</b><br>Упражнений выполнено: 0
+    </button>
+  </ng-template>
   <div class="fix_button">
     <input  *ngIf="chekAdminRole()" class="but" type="image" src="../../assets/plus.png" width="50%" height="50%" (click)="openModal()">
   </div>
