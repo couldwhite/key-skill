@@ -24,7 +24,6 @@
 
 .info{
   display: flex;
-  justify-content: space-between;
   margin: 5% 15% 2% 10%;
 }
 
@@ -37,5 +36,36 @@ input{
 
 .virtual{
   display: flex;
+  margin-left: auto;
+}
 
+.keyboard{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 2%;
+}
+
+button{
+  border-color: #43b05a;
+  border-radius: 4px 4px 4px 4px;
+  font-family: Roboto;
+  width: 43px;
+  padding: 5px;
+}
+
+.zero_str{
+  margin-right: 35%;
+}
+
+.space{
+  padding: 15px 130px 10px 130px
+}
+
+.info_data{
+  margin-left: 10px;
+}
+
+.text_left{
+  text-align: right;
 }

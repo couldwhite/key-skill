@@ -18,4 +18,8 @@ export class SureStartGameModalComponent implements OnInit {
     this.router.navigate(['exercises'])
     this.dialogRef.close()
   }
+
+  onStart(): void{
+    this.dialogRef.close()
+  }
 }

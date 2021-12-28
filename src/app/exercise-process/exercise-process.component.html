@@ -1,21 +1,72 @@
-<div ></div>
+<div></div>
 <div class="info">
   <div>
-    <p>Осталось до конца упражнения: </p>
-    <p>Ошибки: {{errorProcess}}/{{exercise?.maxErrors}}</p>
-    <p>Осталось символов: {{masLetters.length}}</p>
+    <p class="text_left">Осталось до конца упражнения: </p>
+    <p class="text_left">Ошибки: </p>
+    <p class="text_left">Осталось символов: </p>
+  </div>
+  <div class="info_data">
+    <p>Время</p>
+    <p>{{errorProcess}}/{{exercise?.maxErrors}}</p>
+    <p>{{masLetters.length}}</p>
   </div>
   <div class="virtual">
-    <input type="checkbox" >
-    <p>Виртуальная клавиатура</p>
+    <input id="keyboard" type="checkbox" (click)="openCloseKeyboard()">
+    <p >Виртуальная клавиатура</p>
   </div>
 </div>
 <div [@moving_letters]="stateOfLetter" class="letters_field">
   <div class="moving_letters">
-    <p class="main_letters" id="main_letter">{{masLetters[0]==" "? "_": masLetters[0]}}</p>
-    <p *ngFor="let letter of masLetters.slice(1, masLetters.length)" class="letters">{{letter==" "? "_": letter}}</p>
+    <p class="main_letters" id="main_letter">{{masLetters[0] == " " ? "_" : masLetters[0]}}</p>
+    <p *ngFor="let letter of masLetters.slice(1, masLetters.length)"
+       class="letters">{{letter == " " ? "_" : letter}}</p>
   </div>
 </div>
+<div *ngIf="viewKeyboard" class="keyboard">
+  <div>
+    <button [ngStyle]="styleQQ?{'backgroundColor':'#43b05a'}:{}">Ё</button>
+    <button [ngStyle]="styleQ?{'backgroundColor':'#43b05a'}:{}">Й</button>
+    <button [ngStyle]="styleW?{'backgroundColor':'#43b05a'}:{}">Ц</button>
+    <button [ngStyle]="styleE?{'backgroundColor':'#43b05a'}:{}">У</button>
+    <button [ngStyle]="styleR?{'backgroundColor':'#43b05a'}:{}">К</button>
+    <button [ngStyle]="styleT?{'backgroundColor':'#43b05a'}:{}">Е</button>
+    <button [ngStyle]="styleY?{'backgroundColor':'#43b05a'}:{}">Н</button>
+    <button [ngStyle]="styleU?{'backgroundColor':'#43b05a'}:{}">Г</button>
+    <button [ngStyle]="styleI?{'backgroundColor':'#43b05a'}:{}">Ш</button>
+    <button [ngStyle]="styleO?{'backgroundColor':'#43b05a'}:{}">Щ</button>
+    <button [ngStyle]="styleP?{'backgroundColor':'#43b05a'}:{}">З</button>
+    <button [ngStyle]="styleOO?{'backgroundColor':'#43b05a'}:{}">Х</button>
+    <button [ngStyle]="stylePP?{'backgroundColor':'#43b05a'}:{}">Ъ</button>
+  </div>
+  <div>
+    <button [ngStyle]="styleA?{'backgroundColor':'#43b05a'}:{}">Ф</button>
+    <button [ngStyle]="styleS?{'backgroundColor':'#43b05a'}:{}">Ы</button>
+    <button [ngStyle]="styleD?{'backgroundColor':'#43b05a'}:{}">В</button>
+    <button [ngStyle]="styleF?{'backgroundColor':'#43b05a'}:{}">А</button>
+    <button [ngStyle]="styleG?{'backgroundColor':'#43b05a'}:{}">П</button>
+    <button [ngStyle]="styleH?{'backgroundColor':'#43b05a'}:{}">Р</button>
+    <button [ngStyle]="styleJ?{'backgroundColor':'#43b05a'}:{}">О</button>
+    <button [ngStyle]="styleK?{'backgroundColor':'#43b05a'}:{}">Л</button>
+    <button [ngStyle]="styleL?{'backgroundColor':'#43b05a'}:{}">Д</button>
+    <button [ngStyle]="styleKK?{'backgroundColor':'#43b05a'}:{}">Ж</button>
+    <button [ngStyle]="styleLL?{'backgroundColor':'#43b05a'}:{}">Э</button>
+  </div>
+  <div>
+    <button [ngStyle]="styleZ?{'backgroundColor':'#43b05a'}:{}">Я</button>
+    <button [ngStyle]="styleX?{'backgroundColor':'#43b05a'}:{}">Ч</button>
+    <button [ngStyle]="styleC?{'backgroundColor':'#43b05a'}:{}">С</button>
+    <button [ngStyle]="styleV?{'backgroundColor':'#43b05a'}:{}">М</button>
+    <button [ngStyle]="styleB?{'backgroundColor':'#43b05a'}:{}">И</button>
+    <button [ngStyle]="styleN?{'backgroundColor':'#43b05a'}:{}">Т</button>
+    <button [ngStyle]="styleM?{'backgroundColor':'#43b05a'}:{}">Ь</button>
+    <button [ngStyle]="styleNN?{'backgroundColor':'#43b05a'}:{}">Б</button>
+    <button [ngStyle]="styleMM?{'backgroundColor':'#43b05a'}:{}">Ю</button>
+  </div>
+  <div>
+    <button class="space" [ngStyle]="styleSpace?{'backgroundColor':'#43b05a'}:{}"> </button>
+  </div>
+</div>
+
 
 
 
