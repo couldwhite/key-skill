@@ -1,0 +1,74 @@
+.top_panel{
+  display: flex;
+  justify-content: space-between;
+}
+.input_field{
+  background-color: #c5eec4;
+  border: 0;
+  width: 300px;
+  padding: 10px 0 10px 6px;
+  border-radius: 4px 4px 4px 4px;
+  margin-bottom: 1%;
+  font-family: Roboto;
+}
+
+.danger{
+  color: red;
+}
+.not_input_field{
+  background-color: grey;
+  border: 0;
+  width: 444px;
+  padding: 10px 0 10px 6px;
+  border-radius: 4px 4px 4px 4px;
+  margin-bottom: 1%;
+}
+option{
+  font-family: Roboto;
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("../../fonts/RobotoSlab-Regular.woff") format("woff");
+}
+
+::ng-deep.mat-form-field-appearance-fill .mat-form-field-flex{
+  background-color: #c5eec4 !important;
+  padding-top: 0!important;
+  width: 300px!important;
+  border-radius: 4px 4px 4px 4px!important;
+}
+
+.enable{
+  background-color: grey !important;
+  padding-top: 0!important;
+  width: 300px!important;
+  border-radius: 4px 4px 4px 4px!important;
+}
+
+::ng-deep.mat-form-field-underline::before {
+  /*change color of underline*/
+  width: 0 !important;
+}
+
+::ng-deep.mat-form-field-ripple {
+  /*change color of underline when focused*/
+  width: 0 !important;
+}
+button{
+  background-color: #43b05a;
+  border: 0;
+  padding: 10px 15px 10px 15px;
+  border-radius: 4px 4px 4px 4px;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  font-size: 16px;
+  margin-right: 3%;
+  width: 150px;
+  color: white;
+  cursor: pointer;
+}
+
+.btn_block{
+  display: flex;
+  justify-content: center;
+}
+
