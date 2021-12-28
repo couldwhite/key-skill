@@ -5,10 +5,11 @@
 <hr>
 <form [formGroup]="myForm" mat-dialog-content>
   <p>Введите название:</p>
-  <input [(ngModel)]="exercise.name" formControlName="name" class="input_field" type="text">
-  <div class="danger"
-       *ngIf="myForm.controls['name'].invalid && myForm.controls['name'].touched">
-    Пустое название недопустимо
+  <input [(ngModel)]="exercise.name" formControlName="name" class="input_field" type="text"/>
+  <div class="danger" *ngIf="_name?.invalid && (_name?.touched || _name?.dirty)">
+    <span *ngIf="_name?.errors?.required">Пустое название недопустимо</span>
+    <span *ngIf="_name?.errors?.minlength">Введите больше 3 символов</span>
+    <span *ngIf="_name?.errors?.maxlength">Введите меньше 15 символов</span>
   </div>
   <p>Введите уровень сложности:</p>
   <mat-form-field appearance="fill">
@@ -19,15 +20,16 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
-  <p>Введите длину упражнения:</p>
+  <p>Введите длину упражнения: {{_level==1?"(40-60)":(_level==2?"(61-80)":(_level==3?"(81-100)":""))}} символов</p>
   <input [(ngModel)]="exercise.length" formControlName="length" *ngIf="display_all; else display_none"
          [ngStyle]="display_all?{'background-color':'#c5eec4'}:{'background-color': 'grey' }"
-         class="input_field" type="text">
-  <div class="danger"
-       *ngIf="myForm.controls['length'].invalid && myForm.controls['length'].touched">
-    Надо задать длину
+         class="delete_spinner" type="number">
+  <div class="danger" *ngIf="_length?.invalid && (_length?.touched || _length?.dirty)">
+    <span *ngIf="_length?.errors?.required">Необходимо задать длину</span>
+    <span *ngIf="_length?.errors?.min">Слишком маленькое значение</span>
+    <span *ngIf="_length?.errors?.max">Слишком большое значение</span>
   </div>
-  <p>Выберите зоны клавиатуры:</p>
+  <p>Выберите зоны клавиатуры: выберите {{_level==1?"1 зону":(_level==2?"2-3 зоны":(_level==3?"3-4 зоны":""))}}</p>
   <mat-form-field *ngIf="display_all; else display_none" appearance="fill">
     <mat-label>Зоны клавиатуры</mat-label>
     <mat-select [(ngModel)]="exercise.keyZone" formControlName="keyZone" multiple>
@@ -37,17 +39,17 @@
   <ng-template #display_none>
     <input class="not_input_field" type="text" disabled="disabled">
   </ng-template>
-  <div class="danger"
-       *ngIf="myForm.controls['keyZone'].invalid && myForm.controls['keyZone'].touched">
-    Надо выбрать хотя бы 1 зону
+  <div class="danger" *ngIf="_zone?.invalid && (_zone?.touched || _zone?.dirty)">
+    <span *ngIf="_zone?.errors">Выберите необходимое количество зон</span>
   </div>
-  <p>Введите максимальное время нажатия клавиши:</p>
+  <p>Введите максимальное время нажатия клавиши: не более {{_level==1?"4 сек.":(_level==2?"3 сек.":(_level==3?"2 сек.":""))}}</p>
   <input [(ngModel)]="exercise.maxTimeKick" formControlName="maxTimeKick" *ngIf="display_all; else display_none"
          [ngStyle]="display_all?{'background-color':'#c5eec4'}:{'background-color': 'grey' }"
-         class="input_field" type="number" max="4" min="0">
-  <div class="danger"
-       *ngIf="myForm.controls['maxTimeKick'].invalid && myForm.controls['maxTimeKick'].touched">
-    Необходимо задать время нажатия
+         class="input_field" type="number" max="4" min="0" onkeydown="return false">
+  <div class="danger" *ngIf="_maxTimeKick?.invalid && (_maxTimeKick?.touched || _maxTimeKick?.dirty)">
+    <span *ngIf="_maxTimeKick?.errors?.required">Необходимо задать длину</span>
+    <span *ngIf="_maxTimeKick?.errors?.min">Слишком маленькое значение</span>
+    <span *ngIf="_maxTimeKick?.errors?.max">Слишком большое значение</span>
   </div>
   <p>Выберите тип создания упражнения:</p>
   <mat-form-field *ngIf="display_all; else display_none" appearance="fill">
@@ -70,9 +72,10 @@
     height: 70px;
     width: 444px">
     </textarea>
-    <div class="danger"
-         *ngIf="myForm.controls['masOfSymbols'].invalid && myForm.controls['masOfSymbols'].touched">
-      Не забудьте написать свою последовательность
+    <div class="danger" *ngIf="_symbols?.invalid && (_symbols?.touched || _symbols?.dirty)">
+      <span *ngIf="_symbols?.errors?.required">Необходимо ввести последовательность</span>
+      <span *ngIf="_symbols?.errors?.minlength">Введите еще символы</span>
+      <span *ngIf="_symbols?.errors?.maxlength">Лишние символы</span>
     </div>
   </div>
   <div class="btn_add">

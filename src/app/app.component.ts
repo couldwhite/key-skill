@@ -1,10 +1,8 @@
 import { Component, OnInit  } from '@angular/core';
-
 import { TokenStorageService } from './auth/token-storage.service';
-import {NewUserModalComponent} from "./new-user-modal/new-user-modal.component";
 import {MatDialog} from "@angular/material/dialog";
 import {LogoutComponent} from "./logout/logout.component";
-import {Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-root',

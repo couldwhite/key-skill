@@ -13,29 +13,31 @@
       </div>
     </div>
   </nav>
-  <div *ngIf="!isLoggedIn" class="row" >
+  <div *ngIf="!isLoggedIn" class="row">
     <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
       <p>Для начала работы в клавиатурном тренажере вам<br> необходимо войти</p>
       <div class="form-group">
         <label for="username">Введите логин:</label>
-
-        <mat-form-field appearance="fill" >
-          <input matInput name="username"  [(ngModel)]="form.username" #username="ngModel"
-                 required />
+        <mat-form-field appearance="fill">
+          <input matInput name="username" [(ngModel)]="form.username" #username="ngModel"
+                 required minlength="3" maxlength="11"/>
         </mat-form-field>
         <div *ngIf="f.submitted && username.invalid">
           <div class="error-message" *ngIf="username.errors!.required">Логин обязателен</div>
+          <div class="error-message" *ngIf="username.errors!.minlength">Логин не может быть меньше 3 символов</div>
+          <div class="error-message" *ngIf="username.errors!.maxlength">Логин не может быть больше 11 симолов</div>
         </div>
       </div>
       <div class="form-group">
         <label for="password">Введите пароль:</label>
         <mat-form-field appearance="fill">
           <input matInput name="password" type="password" [(ngModel)]="form.password" #password="ngModel"
-                 required minlength="3" />
+                 required minlength="3" maxlength="6"/>
         </mat-form-field>
         <div *ngIf="f.submitted && password.invalid">
           <div class="error-message" *ngIf="password.errors!.required">Пароль обязателен</div>
           <div class="error-message" *ngIf="password.errors!.minlength">Пароль должен содержать минимум 3 символа</div>
+          <div class="error-message" *ngIf="password.errors!.maxlength">Пароль должен содержать максимум 6 символов</div>
         </div>
       </div>
       <div class="form-group">
