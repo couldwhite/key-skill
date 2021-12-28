@@ -32,6 +32,9 @@ import { ReferenceAdminComponent } from './reference-admin/reference-admin.compo
 import { UserCardModalComponent } from './user-card-modal/user-card-modal.component';
 import { SureDeleteUserModalComponent } from './sure-delete-user-modal/sure-delete-user-modal.component';
 import { SureStartGameModalComponent } from './sure-start-game-modal/sure-start-game-modal.component';
+import {UserStatisticComponent} from "./user-statistic/user-statistic.component";
+import { BlockUserModalComponent } from './block-user-modal/block-user-modal.component';
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 
 @NgModule({
@@ -56,6 +59,9 @@ import { SureStartGameModalComponent } from './sure-start-game-modal/sure-start-
     UserCardModalComponent,
     SureDeleteUserModalComponent,
     SureStartGameModalComponent,
+    UserStatisticComponent,
+    BlockUserModalComponent
+
   ],
     imports: [
         BrowserModule,
@@ -70,7 +76,9 @@ import { SureStartGameModalComponent } from './sure-start-game-modal/sure-start-
         ReactiveFormsModule,
         FormsModule,
         NgApexchartsModule,
-        MatButtonModule
+        MatButtonModule,
+        MatButtonModule,
+        MatSnackBarModule
     ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

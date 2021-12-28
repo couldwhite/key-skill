@@ -28,7 +28,12 @@ export class UserService {
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
   }
-
+  getUserByName(name: string): Observable<User> {
+    return this.http.get<User>(`${this.userUrl}/getUserByName`, {
+      params: new HttpParams().append('name', name),
+      headers: new HttpHeaders().append('Content-Type', 'application/json')
+    });
+  }
   deleteUser(id: string){
     return this.http.post<string>(`${this.userUrl}/deleteUser/`,{}, {
       params: new HttpParams().append('id', id),

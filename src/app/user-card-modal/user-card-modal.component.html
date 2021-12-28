@@ -3,8 +3,40 @@
   <input type="image" src="../../assets/close.png" width="4%" height="4%" (click)="onClose()">
 </div>
 <hr>
+<table>
+  <tr>
+    <td>Дата выполнения упражнения</td>
+    <td>Название упражнения</td>
+    <td>Уровень сложности</td>
+    <td>Длина упражненния</td>
+    <td>Количество ошибок</td>
+    <td>Время выполнения (сек.)</td>
+    <td>Средняя скорость нажатия (мс)</td>
+  </tr>
+
+  <tr *ngFor="let user_statistic of allUserStatistics">
+    <td>{{user_statistic.execution_date}}</td>
+    <td>{{user_statistic.name}}</td>
+    <td>{{user_statistic.difficultyLevel}}</td>
+    <td>{{user_statistic.length_symbols}}</td>
+    <td>{{user_statistic.errors}}</td>
+    <td>{{user_statistic.exercise_time}}</td>
+    <td>{{user_statistic.average_speed}}</td>
+  </tr>
+</table>
+<div id="chart">
+  <apx-chart
+    [series]="chartOptions.series"
+    [chart]="chartOptions.chart"
+    [xaxis]="chartOptions.xaxis"
+    [dataLabels]="chartOptions.dataLabels"
+    [grid]="chartOptions.grid"
+    [stroke]="chartOptions.stroke"
+    [title]="chartOptions.title"
+  ></apx-chart>
+</div>
 <div class="buttons" >
-  <button  >Заблокировать </button>
+  <button  class="block" (click)="onBlock()">Заблокировать </button>
   <button  class="exit" (click)="onDelete()">Удалить</button>
 </div>
 
