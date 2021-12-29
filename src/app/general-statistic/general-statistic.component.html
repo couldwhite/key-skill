@@ -1,5 +1,6 @@
 <div class="stat">
   <div id="chart">
+    <h1>Гистограмма количества попыток упражнений</h1>
     <apx-chart
       [series]="chartOptions.series"
       [chart]="chartOptions.chart"
@@ -11,6 +12,8 @@
       [fill]="chartOptions.fill"
     ></apx-chart>
   </div>
+  <div>
+  <h1>Общая статистика</h1>
   <table>
     <tr>
       <td>Название упражнения</td>
@@ -25,5 +28,6 @@
       <td>{{general_statistic.unsuccessfulAttempts}}</td>
     </tr>
   </table>
+  </div>
 </div>
 
