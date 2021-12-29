@@ -35,6 +35,7 @@ import { SureStartGameModalComponent } from './sure-start-game-modal/sure-start-
 import {UserStatisticComponent} from "./user-statistic/user-statistic.component";
 import { BlockUserModalComponent } from './block-user-modal/block-user-modal.component';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import { AboutUsModalComponent } from './about-us-modal/about-us-modal.component';
 
 
 @NgModule({
@@ -60,7 +61,8 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     SureDeleteUserModalComponent,
     SureStartGameModalComponent,
     UserStatisticComponent,
-    BlockUserModalComponent
+    BlockUserModalComponent,
+    AboutUsModalComponent
 
   ],
     imports: [

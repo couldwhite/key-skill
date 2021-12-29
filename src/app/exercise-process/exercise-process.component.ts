@@ -106,9 +106,19 @@ export class ExerciseProcessComponent implements OnInit {
         mainClass.time = setInterval(() => mainClass.errorProcess++, mainClass.clickTime*1000);
         mainClass.masLetters = mainClass.masLetters.slice(1, mainClass.masLetters.length)
         if (mainClass.masLetters.length == 0) {
-          mainClass.userStat.errors = mainClass.errorProcess;
-          mainClass.userStat.id_exercise = mainClass.exercise.id;
-          mainClass.userStatService.addUserStat(mainClass.userStat).subscribe();
+          mainClass.username = mainClass.tokenStorage.getUsername();
+
+          mainClass.userService.getUserByName(mainClass.username).subscribe(el => {
+            mainClass.exerciseService.getById(mainClass.exercise.id).subscribe(elem => {
+              mainClass.userStat.id_user = el.id;
+              mainClass.userStat.errors = mainClass.errorProcess;
+              mainClass.userStat.id_exercise = mainClass.exercise.id;
+              mainClass.userStat.average_speed = mainClass.getRandomIntInclusive(1.0, 4.0);
+              mainClass.userStat.exercise_time = elem.length * mainClass.userStat.average_speed;
+              mainClass.userStatService.addUserStat(mainClass.userStat).subscribe();
+              mainClass.statService.addStatistic(mainClass.id.toString(), false).subscribe();
+            })
+          })
           mainClass.statService.addStatistic(mainClass.id.toString(), true).subscribe();
           const dialogRef = mainClass.dialog.open(SuccessGameModalComponent, {
             width: '250px'
@@ -231,19 +241,6 @@ export class ExerciseProcessComponent implements OnInit {
 
   message(){
       clearInterval(this.time);
-      this.username = this.tokenStorage.getUsername();
-
-      this.userService.getUserByName(this.username).subscribe(el => {
-        this.exerciseService.getById(this.exercise.id).subscribe(elem => {
-          this.userStat.id_user = el.id;
-          this.userStat.errors = this.exercise.maxErrors;
-          this.userStat.id_exercise = this.exercise.id;
-          this.userStat.average_speed = this.getRandomIntInclusive(1.0, 4.0);
-          this.userStat.exercise_time = elem.length * this.userStat.average_speed;
-          this.userStatService.addUserStat(this.userStat).subscribe();
-          this.statService.addStatistic(this.id.toString(), false).subscribe();
-        })
-      })
 
       const dialogRef = this.dialog.open(ErrorExitGameModalComponent, {
         width: '250px'

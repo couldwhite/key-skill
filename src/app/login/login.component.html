@@ -43,7 +43,7 @@
       <div class="form-group">
         <button class="btn">Войти</button>
         <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger">
-          Введен неправильный логин<br>или пароль
+          <p class="error-message"></p>Введен неправильный логин<br>или пароль<br>Или вы заблокированы
         </div>
       </div>
     </form>
