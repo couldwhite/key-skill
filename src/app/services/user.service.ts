@@ -40,5 +40,10 @@ export class UserService {
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
   }
-
+  existById(username: string){
+    return this.http.get<boolean>(`${this.userUrl}/existByName`,{
+      params: new HttpParams().append('username', username),
+      headers: new HttpHeaders().append('Content-Type', 'application/json')
+    });
+  }
 }

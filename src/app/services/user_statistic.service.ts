@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import {GeneralStatistic} from "../domain/general_statistic";
 import {UserStatistic} from "../domain/user_statistic";
 import {User} from "../domain/user";
+import {Exercise} from "../domain/exercise";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -29,6 +30,12 @@ export class UserStatisticServer {
   addStatistic(id: string, flag: boolean): Observable<string>{
     return this.http.post<string>(`${this.statisticUrl}/changeNumberOfAttempts/`,{}, {
       params: new HttpParams().appendAll({'flag': flag, 'id' : id}),
+      headers: new HttpHeaders().append('Content-Type', 'application/json')
+    });
+  }
+  count(id: number): Observable<number>{
+    return this.http.get<number>(`${this.statisticUrl}/count/`, {
+      params: new HttpParams().append('id', id),
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
   }

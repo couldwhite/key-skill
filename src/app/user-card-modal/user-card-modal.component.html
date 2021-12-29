@@ -1,8 +1,9 @@
 <div class="top_panel">
-  <p mat-dialog-title>Карточка пользователя: {{user?.username}}, обучающийся</p>
+  <p mat-dialog-title>Карточка пользователя: <b>{{user?.username}}</b>, обучающийся, {{blocked}}</p>
   <input type="image" src="../../assets/close.png" width="4%" height="4%" (click)="onClose()">
 </div>
 <hr>
+<h1 align = "center">Статистика</h1>
 <table>
   <tr>
     <td>Дата выполнения упражнения</td>
@@ -36,7 +37,12 @@
   ></apx-chart>
 </div>
 <div class="buttons" >
-  <button  class="block" (click)="onBlock()">Заблокировать </button>
+  <button *ngIf="isBlocked==true; else unblock" class="block" (click)="onUnBlock()">
+    Разблокировать
+  </button>
+  <ng-template #unblock>
+    <button  class="block" (click)="onBlock()">Заблокировать </button>
+  </ng-template>
   <button  class="exit" (click)="onDelete()">Удалить</button>
 </div>
 

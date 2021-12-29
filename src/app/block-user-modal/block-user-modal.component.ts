@@ -57,9 +57,8 @@ export class BlockUserModalComponent implements OnInit {
       } else {
         this.block.user_id = this.data.id;
         this.blockService.blockUser(this.block).subscribe();
-        // this.dialogRef.close();
         setTimeout("window.location.reload()",1000);
-        this.snackBar.open("net", "net", {
+        this.snackBar.open("Пользователь успешно заблокирован", "", {
           duration: 2000,
         });
       }

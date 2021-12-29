@@ -30,7 +30,12 @@ export class BlockService {
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
   }
-
+  unBlockUser(id: number): Observable<CheckBlock>{
+    return this.http.post<CheckBlock>(`${this.exerciseUrl}/unblockUser/`,{}, {
+      params: new HttpParams().append('id', id),
+      headers: new HttpHeaders().append('Content-Type', 'application/json')
+    });
+  }
 
   constructor(private http: HttpClient) { }
 }

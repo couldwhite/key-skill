@@ -17,6 +17,8 @@ import {
   ApexGrid
 } from "ng-apexcharts";
 import {BlockUserModalComponent} from "../block-user-modal/block-user-modal.component";
+import {BlockService} from "../services/block_user.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -34,9 +36,10 @@ export type ChartOptions = {
 })
 export class UserCardModalComponent implements OnInit {
   @ViewChild("chart") chart: ChartComponent;
+  isBlocked: boolean;
   public chartOptions: Partial<ChartOptions> | any;
   public allUserStatistics: UserStatistic[] = [];
-
+  public blocked: string;
   public dates: String[] = [];
   public avarage_speeds: number[] = [];
   user: User;
@@ -45,12 +48,21 @@ export class UserCardModalComponent implements OnInit {
               public dialog: MatDialog,
               @Inject(MAT_DIALOG_DATA) public data: { id: number },
               private service: UserService,
-              private userStatisticServer: UserStatisticServer) {
+              private userStatisticServer: UserStatisticServer, private blockService: BlockService, public snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
     this.service.getUserById(this.data.id).subscribe((el) => {
       this.user = el
+    })
+    //TODO если раскомментить, будет выводится на карточку, на прототипах нет
+    this.blockService.checkBlock(this.data.id).subscribe(el => {
+      if (el.checkBlock) {
+        this.blocked = "заблокирован";
+        this.isBlocked = true;
+      } else {
+        this.blocked = "незаблокирован";
+      }
     })
     this.userStatisticServer.getAllUserStatistics(this.data.id).subscribe(response => {
       this.allUserStatistics = response;
@@ -72,6 +84,15 @@ export class UserCardModalComponent implements OnInit {
       this.dialogRef.close();
       window.location.reload();
     })
+  }
+  onUnBlock() {
+    this.blockService.unBlockUser(this.data.id).subscribe();
+    this.snackBar.open("Пользователь успешно разблокирован", "", {
+      duration: 2000,
+      panelClass: ["my-snack-bar"]
+    });
+    setTimeout("window.location.reload()",2000);
+
   }
   onDelete(): void {
     const dialogRefuser = this.dialog.open(SureDeleteUserModalComponent, {
