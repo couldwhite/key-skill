@@ -9,6 +9,10 @@ import {GeneralStatisticServer} from "../services/general_statistic.server";
 import {UserCardModalComponent} from "../user-card-modal/user-card-modal.component";
 import {SureStartGameModalComponent} from "../sure-start-game-modal/sure-start-game-modal.component";
 import {SuccessGameModalComponent} from "../success-game-modal/success-game-modal.component";
+import {UserStatistic} from "../domain/user_statistic";
+import {UserStatisticServer} from "../services/user_statistic.service";
+import {log10} from "chart.js/helpers";
+import {UserService} from "../services/user.service";
 
 
 @Component({
@@ -76,8 +80,9 @@ export class ExerciseProcessComponent implements OnInit {
   styleSpace = false;
   time: any;
   clickTime = 2;
+  userStat: UserStatistic = new UserStatistic();
 
-  constructor(public dialogStart: MatDialog, private activateRoute: ActivatedRoute, service: ExerciseService, public dialog: MatDialog, private statService: GeneralStatisticServer) {
+  constructor(public dialogStart: MatDialog, private userService: UserService, private activateRoute: ActivatedRoute, service: ExerciseService, public dialog: MatDialog, private userStatService: UserStatisticServer, private statService: GeneralStatisticServer) {
     this.id = activateRoute.snapshot.params['id'];
     service.getById(this.id).subscribe(el => {
       this.exercise = el;
@@ -100,6 +105,9 @@ export class ExerciseProcessComponent implements OnInit {
         mainClass.time = setInterval(() => mainClass.errorProcess++, mainClass.clickTime*1000);
         mainClass.masLetters = mainClass.masLetters.slice(1, mainClass.masLetters.length)
         if (mainClass.masLetters.length == 0) {
+          mainClass.userStat.errors = mainClass.errorProcess;
+          mainClass.userStat.id_exercise = mainClass.exercise.id;
+          mainClass.userStatService.addUserStat(mainClass.userStat).subscribe();
           mainClass.statService.addStatistic(mainClass.id.toString(), true).subscribe();
           const dialogRef = mainClass.dialog.open(SuccessGameModalComponent, {
             width: '250px'
@@ -222,11 +230,24 @@ export class ExerciseProcessComponent implements OnInit {
 
   message(){
       clearInterval(this.time);
+      this.userStat.errors = this.exercise.maxErrors;
+      this.userStat.id_exercise = this.exercise.id;
+      this.userStat.id_user = 20;
+      this.userStat.average_speed = this.getRandomIntInclusive(1.0, 4.0);
+      this.userStat.exercise_time = 0;
+
+      this.userStatService.addUserStat(this.userStat).subscribe();
       this.statService.addStatistic(this.id.toString(), false).subscribe();
       const dialogRef = this.dialog.open(ErrorExitGameModalComponent, {
         width: '250px'
       })
       this.errorProcess = 0;
       dialogRef.afterClosed().subscribe(() => window.location.reload());
+  }
+
+  getRandomIntInclusive(min: number, max:number) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor((Math.random() * (max - min) + min)*100)/100; //Максимум и минимум включаются
   }
 }
