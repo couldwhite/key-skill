@@ -83,7 +83,7 @@ export class ExerciseProcessComponent implements OnInit {
   clickTime = 2;
   userStat: UserStatistic = new UserStatistic();
 
-  constructor(private tokenStorage: TokenStorageService, public dialogStart: MatDialog, private userService: UserService, private activateRoute: ActivatedRoute, service: ExerciseService, public dialog: MatDialog, private userStatService: UserStatisticServer, private statService: GeneralStatisticServer) {
+  constructor(private tokenStorage: TokenStorageService, public dialogStart: MatDialog,private exerciseService: ExerciseService, private userService: UserService, private activateRoute: ActivatedRoute, service: ExerciseService, public dialog: MatDialog, private userStatService: UserStatisticServer, private statService: GeneralStatisticServer) {
     this.id = activateRoute.snapshot.params['id'];
     service.getById(this.id).subscribe(el => {
       this.exercise = el;
@@ -234,13 +234,15 @@ export class ExerciseProcessComponent implements OnInit {
       this.username = this.tokenStorage.getUsername();
 
       this.userService.getUserByName(this.username).subscribe(el => {
-        this.userStat.id_user = el.id;
-        this.userStat.errors = this.exercise.maxErrors;
-        this.userStat.id_exercise = this.exercise.id;
-        this.userStat.average_speed = this.getRandomIntInclusive(1.0, 4.0);
-        this.userStat.exercise_time = 0;
-        this.userStatService.addUserStat(this.userStat).subscribe();
-        this.statService.addStatistic(this.id.toString(), false).subscribe();
+        this.exerciseService.getById(this.exercise.id).subscribe(elem => {
+          this.userStat.id_user = el.id;
+          this.userStat.errors = this.exercise.maxErrors;
+          this.userStat.id_exercise = this.exercise.id;
+          this.userStat.average_speed = this.getRandomIntInclusive(1.0, 4.0);
+          this.userStat.exercise_time = elem.length * this.userStat.average_speed;
+          this.userStatService.addUserStat(this.userStat).subscribe();
+          this.statService.addStatistic(this.id.toString(), false).subscribe();
+        })
       })
 
       const dialogRef = this.dialog.open(ErrorExitGameModalComponent, {
