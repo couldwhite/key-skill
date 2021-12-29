@@ -1,0 +1,55 @@
+.title_reference {
+  color: white;
+  padding: 20px;
+  text-align: center;
+  background: #43b05a;
+}
+
+ul {
+  margin-left: 20px;
+}
+
+a {
+  font-size: 15px;
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  color: #43b05a;
+}
+
+.href_center {
+  text-align: center;
+}
+
+.href_center_end {
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+h2 {
+  padding: 20px 0 0 30px;
+}
+
+p {
+  padding: 10px 0 0 30px;
+  font-size: 17px;
+}
+
+.img_cont {
+  text-align: center;
+}
+
+.button_text {
+  display: flex;
+}
+
+.button_text_end {
+  display: flex;
+  padding-bottom: 20px;
+}
+
+.img_button {
+  padding-left: 10px;
+}
