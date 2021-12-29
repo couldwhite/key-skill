@@ -4,11 +4,13 @@
     <p class="text_left">Осталось до конца упражнения: </p>
     <p class="text_left">Ошибки: </p>
     <p class="text_left">Осталось символов: </p>
+    <p class="text_left">Время на нажатие (сек): </p>
   </div>
   <div class="info_data">
     <p>Время</p>
-    <p>{{errorProcess}}/{{exercise?.maxErrors}}</p>
+    <p>{{errorProcess==exercise?.maxErrors?(message()):errorProcess}}/{{exercise?.maxErrors}}</p>
     <p>{{masLetters.length}}</p>
+    <p>{{exercise?.maxTimeKick}}</p>
   </div>
   <div class="virtual">
     <input id="keyboard" type="checkbox" (click)="openCloseKeyboard()">

@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
-import { AuthService } from '../auth/auth.service';
-import { TokenStorageService } from '../auth/token-storage.service';
-import { AuthLoginInfo } from '../auth/login-info';
+import {AuthService} from '../auth/auth.service';
+import {TokenStorageService} from '../auth/token-storage.service';
+import {AuthLoginInfo} from '../auth/login-info';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +18,8 @@ export class LoginComponent implements OnInit {
   roles: string[] = [];
   private loginInfo: AuthLoginInfo;
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService) { }
+  constructor(private authService: AuthService, private tokenStorage: TokenStorageService) {
+  }
 
 
   ngOnInit() {
@@ -41,7 +42,7 @@ export class LoginComponent implements OnInit {
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        this.check();
+       // this.check();
 
         this.roles = this.tokenStorage.getAuthorities();
         this.reloadPage();
@@ -53,7 +54,8 @@ export class LoginComponent implements OnInit {
       }
     );
   }
-  check(){
+
+  /*check() {
     //TODO сделать отображение даты блокировки на страничку
     this.userService.getUserByName(this.form.username).subscribe(el => {
       this.blockService.checkBlock(el.id).subscribe(el => {
@@ -67,6 +69,7 @@ export class LoginComponent implements OnInit {
     //отображает undefined
     console.log(this.dateBlocked)
     console.log(this.isBlocked)
+  }*/
 
   reloadPage() {
     window.location.reload();
