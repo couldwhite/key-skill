@@ -1,0 +1,19 @@
+<div class="top_panel">
+  <p mat-dialog-title>Блокировка пользователя</p>
+  <input type="image" src="../../assets/close.png" width="5%" height="5%" (click)="onClose()">
+</div>
+<hr>
+<form [formGroup]="myForm" mat-dialog-content>
+  <p>Выберите время блокировки:</p>
+  <mat-form-field appearance="fill">
+    <mat-label>Время блокировки</mat-label>
+    <mat-select [(ngModel)]="block.blockTime"  formControlName="levelNumber" (valueChange)="displayAll()">
+      <mat-option *ngFor="let level of this.levels" [value]="level.key">
+        {{level.value}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div class="btn_block">
+    <button  class="block" (click)="onBlock()">Заблокировать </button>
+  </div>
+</form>

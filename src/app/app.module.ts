@@ -1,11 +1,9 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
-import {HomeComponent} from './home/home.component';
 import {UserComponent} from './user/user.component';
 import {ModComponent} from './mod/mod.component';
 import {AdminComponent} from './admin/admin.component';
@@ -31,6 +29,12 @@ import { ErrorExitGameModalComponent } from './error-exit-game-modal/error-exit-
 import { SuccessGameModalComponent } from './success-game-modal/success-game-modal.component';
 import { ReferenceUserComponent } from './reference-user/reference-user.component';
 import { ReferenceAdminComponent } from './reference-admin/reference-admin.component';
+import { UserCardModalComponent } from './user-card-modal/user-card-modal.component';
+import { SureDeleteUserModalComponent } from './sure-delete-user-modal/sure-delete-user-modal.component';
+import { SureStartGameModalComponent } from './sure-start-game-modal/sure-start-game-modal.component';
+import {UserStatisticComponent} from "./user-statistic/user-statistic.component";
+import { BlockUserModalComponent } from './block-user-modal/block-user-modal.component';
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 
 @NgModule({
@@ -38,7 +42,6 @@ import { ReferenceAdminComponent } from './reference-admin/reference-admin.compo
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent,
     UserComponent,
     ModComponent,
     AdminComponent,
@@ -53,6 +56,12 @@ import { ReferenceAdminComponent } from './reference-admin/reference-admin.compo
     SuccessGameModalComponent,
     ReferenceUserComponent,
     ReferenceAdminComponent,
+    UserCardModalComponent,
+    SureDeleteUserModalComponent,
+    SureStartGameModalComponent,
+    UserStatisticComponent,
+    BlockUserModalComponent
+
   ],
     imports: [
         BrowserModule,
@@ -67,7 +76,9 @@ import { ReferenceAdminComponent } from './reference-admin/reference-admin.compo
         ReactiveFormsModule,
         FormsModule,
         NgApexchartsModule,
-        MatButtonModule
+        MatButtonModule,
+        MatButtonModule,
+        MatSnackBarModule
     ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

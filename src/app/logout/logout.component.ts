@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialogRef} from "@angular/material/dialog";
 import {TokenStorageService} from "../auth/token-storage.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-logout',
@@ -10,7 +11,7 @@ import {TokenStorageService} from "../auth/token-storage.service";
 export class LogoutComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<LogoutComponent>,
-              private token: TokenStorageService) { }
+              private token: TokenStorageService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -21,6 +22,7 @@ export class LogoutComponent implements OnInit {
 
   onExit(): void{
     this.token.saveToken("");
-    window.location.reload();
+    this.router.navigate(['home'])
+    this.dialogRef.close()
   }
 }

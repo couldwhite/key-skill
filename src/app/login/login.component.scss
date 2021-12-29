@@ -57,3 +57,25 @@ p{
   padding-bottom: 15px;
 }
 
+.main-img {
+  display: grid;
+  justify-content: space-between;
+}
+
+.main-img__keyboard {
+  grid-column: 10;
+}
+
+.main-img__logo {
+  grid-column: 6;
+}
+
+.main{
+  background-color: #c5eec4;
+  height: 50px;
+  margin-bottom: 100px;
+}
+
+button{
+  cursor: pointer;
+}

@@ -1,9 +1,8 @@
 import { Component, OnInit  } from '@angular/core';
-
 import { TokenStorageService } from './auth/token-storage.service';
-import {NewUserModalComponent} from "./new-user-modal/new-user-modal.component";
 import {MatDialog} from "@angular/material/dialog";
 import {LogoutComponent} from "./logout/logout.component";
+
 
 @Component({
   selector: 'app-root',
@@ -36,8 +35,11 @@ export class AppComponent implements OnInit {
 
 
   logout(): void{
-    this.dialog.open(LogoutComponent, {
+    const dialogRef = this.dialog.open(LogoutComponent, {
       width: '375px'
+    })
+    dialogRef.afterClosed().subscribe(() => {
+      window.location.reload()
     })
   }
 }
