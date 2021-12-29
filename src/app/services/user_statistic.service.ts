@@ -5,6 +5,8 @@ import {GeneralStatistic} from "../domain/general_statistic";
 import {UserStatistic} from "../domain/user_statistic";
 import {User} from "../domain/user";
 import {Exercise} from "../domain/exercise";
+import {SignUpInfo} from "../auth/signup-info";
+import {JwtResponse} from "../auth/jwt-response";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -38,5 +40,9 @@ export class UserStatisticServer {
       params: new HttpParams().append('id', id),
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
+  }
+
+  addUserStat(credentials: UserStatistic): Observable<UserStatistic> {
+    return this.http.post<UserStatistic>(`${this.statisticUrl}/addUserStatistic`, credentials, httpOptions);
   }
 }

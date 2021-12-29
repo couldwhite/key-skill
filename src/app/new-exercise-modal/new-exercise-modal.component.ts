@@ -3,6 +3,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {Exercise} from "../domain/exercise";
 import {ExerciseService} from "../services/exercise.service";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 interface Level {
   key: number,
@@ -40,7 +41,7 @@ export class NewExerciseModalComponent implements OnInit {
   })
 
   constructor(public dialogRef: MatDialogRef<NewExerciseModalComponent>,
-              private exerciseService: ExerciseService) {
+              private exerciseService: ExerciseService, public snackBar: MatSnackBar) {
   }
 
   public levels: Level[] = [
@@ -81,6 +82,9 @@ export class NewExerciseModalComponent implements OnInit {
     if (this.myForm.valid) {
       this.exercise.maxErrors = Math.round(this.exercise.length / 10);
       this.exerciseService.addExercise(this.exercise).subscribe(() => window.location.reload());
+      this.snackBar.open("Упражнение успешно добавлено", "", {
+        duration: 2000,
+      });
       this.dialogRef.close();
     }
   }

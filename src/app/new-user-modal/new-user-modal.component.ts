@@ -2,6 +2,8 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {AddUserService} from "../services/add_user.service";
 import {SignUpInfo} from "../auth/signup-info";
+import {ExerciseService} from "../services/exercise.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 
 @Component({
@@ -13,9 +15,10 @@ export class NewUserModalComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<NewUserModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: SignUpInfo,
-              private addUserService: AddUserService) { }
+              private addUserService: AddUserService,public snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+
   }
 
   onClose(): void{
@@ -25,6 +28,12 @@ export class NewUserModalComponent implements OnInit {
   onSave(): void{
     this.dialogRef.close(this.data);
     console.log(this.data);
-   this.addUserService.attemptAuth(this.data).subscribe(()=>window.location.reload());
+   this.addUserService.attemptAuth(this.data).subscribe(()=>{
+     setTimeout("window.location.reload()",2000);
+     this.snackBar.open("Пользователь успешно добавлен", "", {
+       duration: 2000,
+     });
+
+   });
   }
 }

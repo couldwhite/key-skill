@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AboutUsModalComponent} from "../about-us-modal/about-us-modal.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-reference-user',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReferenceUserComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
+  click(){
+    const dialogRef = this.dialog.open(AboutUsModalComponent, {
+      width: '400px',
+    })
+    dialogRef.afterClosed().subscribe(result => console.log(result))
+  }
 }

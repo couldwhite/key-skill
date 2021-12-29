@@ -16,11 +16,11 @@
       </button>
     </ng-template>
     <button *ngIf="authority=='admin' ; else userRef">
-      <a [routerLink]="['reference-admin']">Справка</a>
+      <a href='reference-admin' target="_blank">Справка</a>
     </button>
     <ng-template #userRef>
       <button>
-        <a [routerLink]="['reference-user']">Справка</a>
+        <a href='reference-user' target="_blank">Справка</a>
       </button>
     </ng-template>
     <button class="user_button" (click)="logout()">
